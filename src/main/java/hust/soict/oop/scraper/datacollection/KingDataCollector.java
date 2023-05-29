@@ -1,6 +1,6 @@
-package datacollection;
+package hust.soict.oop.scraper.datacollection;
 
-import entity.King;
+import hust.soict.oop.scraper.entities.King;
 
 import java.util.List;
 import java.util.ArrayList;

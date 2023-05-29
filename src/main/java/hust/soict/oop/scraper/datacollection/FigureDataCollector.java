@@ -1,5 +1,5 @@
 
-package datacollection;
+package hust.soict.oop.scraper.datacollection;
 
 import java.io.IOException;
 import java.util.List;

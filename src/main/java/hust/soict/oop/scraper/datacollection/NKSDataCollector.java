@@ -1,6 +1,6 @@
-package datacollection;
+package hust.soict.oop.scraper.datacollection;
 
-import entity.Figure;
+import hust.soict.oop.scraper.entities.Figure;
 
 import java.io.FileWriter;
 import java.io.IOException;
