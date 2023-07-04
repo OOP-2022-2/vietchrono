@@ -1,6 +1,11 @@
 package hust.soict.oop.scraper.screen;
 
+import hust.soict.oop.scraper.dynasty.Dynasty;
 import hust.soict.oop.scraper.event.Event;
+import hust.soict.oop.scraper.festival.Festival;
+import hust.soict.oop.scraper.figure.Figure;
+import hust.soict.oop.scraper.figure.King;
+import hust.soict.oop.scraper.location.Location;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -74,5 +79,11 @@ public class ControllerModal {
         contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
         contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
     }
+    
+    public void setModalDetails(Dynasty dynasty) {}
+    public void setModalDetails(King king) {}
+    public void setModalDetails(Figure figure) {}
+    public void setModalDetails(Festival festival) {}
+    public void setModalDetails(Location attraction) {}
 
 }

@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ControllerEvent {
+public class ControllerFestival {
 	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
 	
 	private Event event;
@@ -37,7 +37,7 @@ public class ControllerEvent {
     @FXML
     private Button detailButton;
     
-    public ControllerEvent(Event event) {
+    public ControllerFestival(Event event) {
     	this.event = event;
     }
 
