@@ -199,6 +199,7 @@
                   </HBox>
                   
                   <!-- Add headers here (don't know how) -->
+                  <fx:include source="OverviewHeader.fxml" fx:id="header"/>
                   
                   <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
                      <content>

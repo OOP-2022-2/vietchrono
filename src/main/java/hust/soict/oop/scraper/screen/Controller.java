@@ -31,6 +31,9 @@ public class Controller {
 
 	@FXML
 	private Label titleLabel;
+	
+	@FXML
+	private HBox header;
 
 	@FXML
 	private VBox pnItems = null;
@@ -58,8 +61,19 @@ public class Controller {
 
 	@FXML
 	public void initialize() {
+		setHeaderSource("OverviewHeader.fxml");
 		getEvents();
 	}
+	
+	public void setHeaderSource(String sourcePath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(sourcePath));
+            HBox headerContent = loader.load();
+            header.getChildren().setAll(headerContent);
+        } catch (IOException e) {
+            // Handle the exception
+        }
+    }
 
 	public void handleClicks(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == btnDynasties) {
@@ -79,6 +93,7 @@ public class Controller {
 
 			// Set the text of the label to the clicked button's text
 			titleLabel.setText(buttonText);
+			setHeaderSource("OverviewHeader.fxml");
 		}
 		if (actionEvent.getSource() == btnFigures) {
 			String buttonText = ((Labeled) actionEvent.getSource()).getText();
@@ -91,6 +106,7 @@ public class Controller {
 
 			// Set the text of the label to the clicked button's text
 			titleLabel.setText(buttonText);
+			setHeaderSource("EventHeader.fxml");
 			loadEvents();
 		}
 		if (actionEvent.getSource() == btnAttractions) {
