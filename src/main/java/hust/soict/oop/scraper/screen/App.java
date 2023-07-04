@@ -7,14 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Main extends Application {
+public class App extends Application {
+	private static final String VIEW_APP_PATH = "ViewApp.fxml";    
+
     private double x, y;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Controller controller = new Controller(); // Create an instance of Controller
+        ControllerApp controller = new ControllerApp(); // Create an instance of Controller
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_APP_PATH));
         loader.setController(controller); // Set the controller instance
 
         Parent root = loader.load();

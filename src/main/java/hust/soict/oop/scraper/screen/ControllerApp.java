@@ -1,31 +1,25 @@
 package hust.soict.oop.scraper.screen;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.*;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hust.soict.oop.scraper.event.Event;
 
-public class Controller {
+public class ControllerApp {
+    private static final String EVENTS_JSON_PATH = "src/main/java/hust/soict/oop/scraper/event/data/events.json";
+	private static final String VIEW_OVERVIEW_HEADER_PATH = "ViewOverviewHeader.fxml";
+	private static final String VIEW_EVENT_HEADER_PATH = "ViewEventHeader.fxml";    
+	private static final String VIEW_EVENT_PATH = "ViewEvent.fxml";    
+    
 	private List<Event> events = new ArrayList<>();
 	
 	@FXML
@@ -60,12 +54,12 @@ public class Controller {
 
 	@FXML
 	public void initialize() {
-		setHeaderSource("OverviewHeader.fxml");
+		setHeaderSource(VIEW_OVERVIEW_HEADER_PATH);
 	}
 	
-	public Controller() {
+	public ControllerApp() {
 		// init events
-		ItemListController<Event> eventListController = new ItemListController<>("src/main/java/hust/soict/oop/scraper/event/data/events.json", Event[].class);
+		ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
 		events = eventListController.getItems();
 	}
 	
@@ -97,7 +91,7 @@ public class Controller {
 
 			// Set the text of the label to the clicked button's text
 			titleLabel.setText(buttonText);
-			setHeaderSource("OverviewHeader.fxml");
+			setHeaderSource(VIEW_OVERVIEW_HEADER_PATH);
 		}
 		if (actionEvent.getSource() == btnFigures) {
 			String buttonText = ((Labeled) actionEvent.getSource()).getText();
@@ -112,7 +106,7 @@ public class Controller {
 			titleLabel.setText(buttonText);
 			
 			// Set headers
-			setHeaderSource("EventHeader.fxml");
+			setHeaderSource(VIEW_EVENT_HEADER_PATH);
 			
 			// Clear the VBox first
 			loadEventItems();
@@ -145,10 +139,12 @@ public class Controller {
 	}
 
 	private HBox loadEventItem(Event event) throws IOException {
-	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Event.fxml"));
-	    HBox eventItem = fxmlLoader.load();
-	    EventController eventController = fxmlLoader.getController();
-	    eventController.setEventDetails(event);
+		ControllerEvent controller = new ControllerEvent(event); // Create an instance of Controller
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_EVENT_PATH));
+        loader.setController(controller); // Set the controller instance
+	    HBox eventItem = loader.load();
+	    controller.setEventDetails();
 	    return eventItem;
 	}
 }

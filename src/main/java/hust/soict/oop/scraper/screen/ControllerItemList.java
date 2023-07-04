@@ -10,11 +10,11 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ItemListController<T> {
+public class ControllerItemList<T> {
 	
 	private List<T> items = new ArrayList<>();
 	
-	public ItemListController(String dataFilePath, Class<T[]> type) {
+	public ControllerItemList(String dataFilePath, Class<T[]> type) {
 		loadItems(dataFilePath, type);
 	}
 

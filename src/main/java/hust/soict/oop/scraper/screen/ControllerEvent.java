@@ -13,8 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class EventController {
+public class ControllerEvent {
+	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
+	
 	private Event event;
 	
     @FXML
@@ -34,9 +37,12 @@ public class EventController {
 
     @FXML
     private Button detailButton;
-
-    public void setEventDetails(Event event) {
+    
+    public ControllerEvent(Event event) {
     	this.event = event;
+    }
+
+    public void setEventDetails() {
         // Set the event details in the UI elements
         eventLabel.setText(event.getEvent());
         dateLabel.setText(event.printDate());
@@ -53,7 +59,7 @@ public class EventController {
     private void handleDetailButtonClick(ActionEvent event) {
         try {
             // Load the FXML file for the modal content            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Modal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_MODAL_PATH));
             Parent root = loader.load();
 
             // Create a new stage (modal) to show the content
@@ -63,7 +69,7 @@ public class EventController {
             modalStage.setScene(new Scene(root));
             
             // Set the event details in the Event.fxml controller
-            ModalController modalController = loader.getController();
+            ControllerModal modalController = loader.getController();
             modalController.setModalDetails(this.event);
 
             // Show the modal and wait for it to be closed
