@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EventController {
+	private Event event;
+	
     @FXML
     private HBox itemC;
 
@@ -34,9 +36,10 @@ public class EventController {
     private Button detailButton;
 
     public void setEventDetails(Event event) {
+    	this.event = event;
         // Set the event details in the UI elements
         eventLabel.setText(event.getEvent());
-        dateLabel.setText(event.getDate());
+        dateLabel.setText(event.printDate());
         ageLabel.setText(event.getAge());
         dynastyLabel.setText(event.getDynasty());
 
@@ -49,15 +52,19 @@ public class EventController {
     @FXML
     private void handleDetailButtonClick(ActionEvent event) {
         try {
-            // Load the FXML file for the modal content
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModalContent.fxml"));
+            // Load the FXML file for the modal content            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Modal.fxml"));
             Parent root = loader.load();
 
             // Create a new stage (modal) to show the content
             Stage modalStage = new Stage();
             modalStage.initModality(Modality.APPLICATION_MODAL);
-            modalStage.setTitle("Modal Title");
+            modalStage.setTitle("Details");
             modalStage.setScene(new Scene(root));
+            
+            // Set the event details in the Event.fxml controller
+            ModalController modalController = loader.getController();
+            modalController.setModalDetails(this.event);
 
             // Show the modal and wait for it to be closed
             modalStage.showAndWait();

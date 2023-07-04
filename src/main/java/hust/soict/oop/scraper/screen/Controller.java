@@ -26,9 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import hust.soict.oop.scraper.event.Event;
 
 public class Controller {
-	
 	private List<Event> events = new ArrayList<>();
-
+	
 	@FXML
 	private Label titleLabel;
 	
@@ -62,7 +61,12 @@ public class Controller {
 	@FXML
 	public void initialize() {
 		setHeaderSource("OverviewHeader.fxml");
-		getEvents();
+	}
+	
+	public Controller() {
+		// init events
+		ItemListController<Event> eventListController = new ItemListController<>("src/main/java/hust/soict/oop/scraper/event/data/events.json", Event[].class);
+		events = eventListController.getItems();
 	}
 	
 	public void setHeaderSource(String sourcePath) {
@@ -106,8 +110,12 @@ public class Controller {
 
 			// Set the text of the label to the clicked button's text
 			titleLabel.setText(buttonText);
+			
+			// Set headers
 			setHeaderSource("EventHeader.fxml");
-			loadEvents();
+			
+			// Clear the VBox first
+			loadEventItems();
 		}
 		if (actionEvent.getSource() == btnAttractions) {
 			String buttonText = ((Labeled) actionEvent.getSource()).getText();
@@ -122,43 +130,25 @@ public class Controller {
 			titleLabel.setText(buttonText);
 		}
 	}
+	
+	public void loadEventItems() {
+	    pnItems.getChildren().clear();
 
-    private void loadEvents() {
-        // Clear the VBox first
-        pnItems.getChildren().clear();
+	    try {
+	        for (Event event : events) {
+	            HBox eventItem = loadEventItem(event);
+	            pnItems.getChildren().add(eventItem);
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 
-        try {
-            for (Event event : events) {
-            	// Load the Event.fxml file for each event
-            	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Event.fxml"));
-                HBox eventItem = fxmlLoader.load();
-
-                // Set the event details in the Event.fxml controller
-                EventController eventController = fxmlLoader.getController();
-                eventController.setEventDetails(event);
-
-                // Add the event item to the VBox
-                pnItems.getChildren().add(eventItem);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Implement this method to retrieve the list of events from your data source
-    private void getEvents() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-			events = Arrays.asList(objectMapper.readValue(Paths.get("src/main/java/hust/soict/oop/scraper/event/data/events.json").toFile(), Event[].class));
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
+	private HBox loadEventItem(Event event) throws IOException {
+	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Event.fxml"));
+	    HBox eventItem = fxmlLoader.load();
+	    EventController eventController = fxmlLoader.getController();
+	    eventController.setEventDetails(event);
+	    return eventItem;
+	}
 }

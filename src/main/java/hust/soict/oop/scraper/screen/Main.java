@@ -8,30 +8,35 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-	private double x, y;
+    private double x, y;
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-		primaryStage.setScene(new Scene(root));
-		// set stage borderless
-		primaryStage.initStyle(StageStyle.UNDECORATED);
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Controller controller = new Controller(); // Create an instance of Controller
 
-		// drag it here
-		root.setOnMousePressed(event -> {
-			x = event.getSceneX();
-			y = event.getSceneY();
-		});
-		root.setOnMouseDragged(event -> {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+        loader.setController(controller); // Set the controller instance
 
-			primaryStage.setX(event.getScreenX() - x);
-			primaryStage.setY(event.getScreenY() - y);
+        Parent root = loader.load();
 
-		});
-		primaryStage.show();
-	}
+        primaryStage.setScene(new Scene(root));
+        // Set stage borderless
+        primaryStage.initStyle(StageStyle.UNDECORATED);
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+        // Drag the window
+        root.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() - x);
+            primaryStage.setY(event.getScreenY() - y);
+        });
+
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

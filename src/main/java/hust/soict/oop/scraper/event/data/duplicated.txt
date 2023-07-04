@@ -148,7 +148,7 @@ Events 1965-1968 ||| chiến dịch Chiến tranh cục bộ and 1968, tổng ti
 New Event: 1965-1968 ||| chiến dịch Chiến tranh cục bộ. 1968, tổng tiến công tết Mậu Thân. Mỹ tăng cường chiến tranh phá hoại miền Bắc.
 Events 30/04/1975- ||| chính phủ Việt Nam Cộng hòa đầu hàng vô điều kiện Cộng hòa Miền Nam Việt Nam and 30.4.1975, chiến dịch Hồ Chí Minh toàn thắng, miền Nam hoàn toàn được giải phóng. are the same.
 New Event: 30/04/1975- ||| 30.4.1975, chiến dịch Hồ Chí Minh toàn thắng, miền Nam hoàn toàn được giải phóng.
-Events 02/07/1976- ||| thống nhất đất nước, đổi tên nước thành Cộng hòa xã hội chủ nghĩa Việt Nam and Ngày 2-7-1976, Quốc hội khóa VI, kỳ họp thứ nhất quyết định đổi tên nước ta thành Cộng hòa Xã hội Chủ nghĩa Việt Nam. are the same.
+Events 02/07/1976- ||| đổi tên nước thành Cộng hòa xã hội chủ nghĩa Việt Nam and Ngày 2-7-1976, Quốc hội khóa VI, kỳ họp thứ nhất quyết định đổi tên nước ta thành Cộng hòa Xã hội Chủ nghĩa Việt Nam. are the same.
 New Event: 02/07/1976- ||| Ngày 2-7-1976, Quốc hội khóa VI, kỳ họp thứ nhất quyết định đổi tên nước ta thành Cộng hòa Xã hội Chủ nghĩa Việt Nam.
 Events 1986- ||| Đổi Mới and 1986 đại hội VI của Đảng Cộng sản Việt Nam, đề ra đường lối đổi mới. are the same.
 New Event: 1986- ||| 1986 đại hội VI của Đảng Cộng sản Việt Nam, đề ra đường lối đổi mới.

@@ -72,7 +72,7 @@ public class CollectorEventWiki extends CollectorEvent {
     			description = description + " " + (eleDocument.select("p").size() != 0 ? eleDocument.select("p").get(0).text() : "");
     			Elements imageUrls = doc.getElementsByClass("mw-file-description");
     			for (int j = 0; j < imageUrls.size(); j++) {
-    				String imgUrl = imageUrls.get(j) == null || imageUrls.get(j).attr("href").contains(".svg|.SVG") ? "" : imageUrls.get(j).attr("href");
+    				String imgUrl = imageUrls.get(j) == null || imageUrls.get(j).attr("href").contains(".svg|.SVG") ? "" : "https://vi.wikipedia.org" + imageUrls.get(j).attr("href");
     				String caption = imageUrls.get(j).nextElementSibling() == null ? "" : imageUrls.get(j).nextElementSibling().text();
     				
     				if (imgUrl != "" && caption != "") {
@@ -119,7 +119,7 @@ public class CollectorEventWiki extends CollectorEvent {
     			description = description + " " + (eleDocument.select("p").size() != 0 ? eleDocument.select("p").get(0).text() : "");
     			Elements imageUrls = doc.getElementsByClass("mw-file-description");
     			for (int j = 0; j < imageUrls.size(); j++) {
-    				String imgUrl = imageUrls.get(j) == null || imageUrls.get(j).attr("href").contains(".svg|.SVG") ? "" : imageUrls.get(j).attr("href");
+    				String imgUrl = imageUrls.get(j) == null || imageUrls.get(j).attr("href").contains(".svg|.SVG") ? "" : "https://vi.wikipedia.org" + imageUrls.get(j).attr("href");
     				String caption = imageUrls.get(j).nextElementSibling() == null ? "" : imageUrls.get(j).nextElementSibling().text();
     				
     				if (imgUrl != "" && caption != "") {
