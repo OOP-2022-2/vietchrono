@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,7 +21,6 @@ public class NKSDataCollector  extends FigureDataCollector{
 
     @Override
     public List<String> getAllUrls(String url) throws IOException {
-        // TODO Auto-generated method stub
         
         List<String> allLinks = new ArrayList<String>();
 
@@ -39,19 +40,21 @@ public class NKSDataCollector  extends FigureDataCollector{
 
     @Override
     public void getData(List<String> allUrls) throws IOException {
-        // TODO Auto-generated method stub
         
 
-        Writer writer = new FileWriter("src/Data/nks.json");
+        Writer writer = new FileWriter("src/main/java/hust/soict/oop/scraper/figure/data/nks.json");
             writer.write("[\n");
         int count = 0;
         for (String url : allUrls) {
-            count++;
+            
             String name = null;
             String description = "";
             String sinh = null;
             String mat = null;
-            String time;
+            String time = "không rõ";
+            String otherName = "không rõ";
+            String place = "không rõ";
+            String period = "không rõ";
             
             Figure figure = new Figure();
 
@@ -61,11 +64,12 @@ public class NKSDataCollector  extends FigureDataCollector{
             figure.setName(name);
 
             Elements infobox = doc.select("table.infobox");
+            Elements articleBody = doc.select("div[class = com-content-article__body]");
+            Elements paragraphs = articleBody.select("p");
 
             if (infobox.size() > 0) {
                 Elements rows = infobox.get(0).select("tr");
-                
-
+             
                 for (Element r : rows) {
                     Elements eKey = r.select("th");
                     Elements eValue = r.select("td");
@@ -89,9 +93,7 @@ public class NKSDataCollector  extends FigureDataCollector{
                 }
                 time = (sinh == null ? "Không rõ" : sinh) + " - " + (mat == null ? "Không rõ" : mat);
                 figure.setTime(time);
-
-                Elements articleBody = doc.select("div[itemprop = articleBody]");
-                Elements paragraphs = articleBody.select("div[itemprop = articleBody] ~ *");
+           
                 if (paragraphs.size() > 0) {
                     for (Element p : paragraphs) {
                         if (!p.text().equals("")) {
@@ -100,13 +102,80 @@ public class NKSDataCollector  extends FigureDataCollector{
                     }
                 }
                 figure.setDescription(description);
+                figure.setOtherName(otherName);
+                figure.setPlace(place);
+                figure.setPeriod(period);
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 gson.toJson(figure, writer);
                 writer.flush();
                 writer.write(",\n");
+                count++;
+            }
+            else {
+            	if (paragraphs.size() > 0) {
+            		String info = paragraphs.get(0).text();
+					String timeRegex ="("+name+" )"+"(\\()([^)]*)(\\))";
+					Pattern p = Pattern.compile(timeRegex);
+				    Matcher matcher = p.matcher(info);
+				    boolean matchFound = matcher.find();
+				    if(matchFound) {
+					      String nameTime = matcher.group();
+					      String Regex = "\\(.*\\)";
+					      Pattern pattern = Pattern.compile(Regex);
+					      Matcher m = pattern.matcher(nameTime);
+					      boolean match = m.find();
+					      String time1 = "Không rõ";
+					      if(match){
+					      	String str = m.group();
+					      	time1 = str.substring(1, str.length()-1);
+					      }
+					      figure.setName(name);
+					      figure.setTime(time1);
+					      Elements pTags1 = articleBody.select("#toc ~ *");
+					      if(pTags1.size()>0) {
+							for(Element p1 : pTags1) {								
+								if(!p1.text().equals("")) description+=p1.text()+"\n";
+							}
+					      }
+					      else {
+					    	  description = "";
+					      }
+					      figure.setDescription(description);
+					      figure.setOtherName(otherName);
+						  figure.setPlace(place);
+						  figure.setPeriod(period);
+						  count++;
+						  Gson gson = new GsonBuilder().setPrettyPrinting().create();
+						  gson.toJson(figure, writer);
+						  writer.write(",\n");
+					      
+					}
+				    else {
+					    	figure.setName(name);
+					    	figure.setTime("Không rõ");
+					    	Elements pTags1 = articleBody.select("#toc ~ *");
+						    if(pTags1.size()>0) {
+								for(Element p1 : pTags1) {
+									if(!p1.text().equals("")) description+=p1.text()+"\n";
+								}
+						    }
+						    else {
+						    	  description = "";
+						    }
+						    figure.setDescription(description);
+						    figure.setOtherName(otherName);
+						    figure.setPeriod(period);
+							figure.setPlace(place);
 
-
-
+							count++;
+						    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+						    gson.toJson(figure, writer);
+						    writer.write(",\n");							
+					}
+					
+				
+            	}
+            	
             }
 
         }
@@ -119,7 +188,6 @@ public class NKSDataCollector  extends FigureDataCollector{
 
     @Override
     public void Start() throws IOException {
-        // TODO Auto-generated method stub
         String url = "https://nguoikesu.com/nhan-vat";
         List<String> allLinks= getAllUrls(url);
         
@@ -130,11 +198,10 @@ public class NKSDataCollector  extends FigureDataCollector{
     }
     
 
-    // public static void main(String[] args) throws IOException {
-    //     NKSDataCollector nks = new NKSDataCollector();
-    //     List<String> allLinks= nks.getAllUrls("https://nguoikesu.com/nhan-vat");
-    //     System.out.println(allLinks.size());
-    // }
-    // 1452 nv
+//     public static void main(String[] args) throws IOException {
+//         NKSDataCollector nks = new NKSDataCollector();
+//    	 nks.Start();
+//     }
+    // 1450 nv
     
 }

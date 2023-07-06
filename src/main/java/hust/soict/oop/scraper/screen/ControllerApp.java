@@ -37,8 +37,8 @@ public class ControllerApp {
 //    private List<Festival> festivals = new ArrayList<>();
 //    ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH, Festival[].class);
 //
-//    private List<Figure> figures = new ArrayList<>();
-//    ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH, Figure[].class);
+    private List<Figure> figures = new ArrayList<>();
+    ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH, Figure[].class);
 
     @FXML
     private Label titleLabel;
@@ -82,7 +82,7 @@ public class ControllerApp {
 //        kings = kingListController.getItems();
 //        attractions = attractionListController.getItems();
 //        festivals = festivalListController.getItems();
-//        figures = figureListController.getItems();
+        figures = figureListController.getItems();
     }
 
     public void setHeaderSource(String sourcePath) {
@@ -121,8 +121,8 @@ public class ControllerApp {
 //                loadDynastyItems();
 //            } else if (source == btnKings) {
 //                loadKingItems();
-//            } else if (source == btnFigures) {
-//                loadFigureItems();
+            } else if (source == btnFigures) {
+                loadFigureItems();
 //            } else if (source == btnFestivals) {
 //                loadFestivalItems();
 //            } else if (source == btnAttractions) {
@@ -246,27 +246,27 @@ public class ControllerApp {
 //        return festivalItem;
 //    }
 //
-//    public void loadFigureItems() {
-//        pnItems.getChildren().clear();
+    public void loadFigureItems() {
+        pnItems.getChildren().clear();
+
+        try {
+            for (Figure figure : figures) {
+                HBox figureItem = loadFigureItem(figure);
+                pnItems.getChildren().add(figureItem);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 //
-//        try {
-//            for (Figure figure : figures) {
-//                HBox figureItem = loadFigureItem(figure);
-//                pnItems.getChildren().add(figureItem);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private HBox loadFigureItem(Figure figure) throws IOException {
-//        ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
-//
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FIGURE_PATH));
-//        loader.setController(controller); // Set the controller instance
-//        HBox figureItem = loader.load();
-//        controller.setFigureDetails();
-//        return figureItem;
-//    }
+    private HBox loadFigureItem(Figure figure) throws IOException {
+        ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FIGURE_PATH));
+        loader.setController(controller); // Set the controller instance
+        HBox figureItem = loader.load();
+        controller.setFigureDetails();
+        return figureItem;
+    }
 
 }
