@@ -121,7 +121,8 @@ public class ControllerApp {
 //                loadDynastyItems();
 //            } else if (source == btnKings) {
 //                loadKingItems();
-            } else if (source == btnFigures) {
+            } 
+        	if (source == btnFigures) {
                 loadFigureItems();
 //            } else if (source == btnFestivals) {
 //                loadFestivalItems();
@@ -260,6 +261,7 @@ public class ControllerApp {
     }
 
     private HBox loadFigureItem(Figure figure) throws IOException {
+    	System.out.println(figure.name);
         ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FIGURE_PATH));
