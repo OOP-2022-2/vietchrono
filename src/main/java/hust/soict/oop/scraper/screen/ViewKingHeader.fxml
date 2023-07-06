@@ -6,14 +6,14 @@
 
 <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="120.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
      <children>
-        <Label text="King" textFill="#e7e5e5">
+        <Label text="Vua" textFill="#e7e5e5">
             <HBox.margin>
                 <Insets left="10.0" />
             </HBox.margin>
         </Label>
-      <Label layoutX="20.0" layoutY="23.0" text="Country" textFill="#e7e5e5" />
-      <Label layoutX="172.0" layoutY="23.0" text="Birth-Death" textFill="#e7e5e5" />
-      <Label layoutX="324.0" layoutY="23.0" text="Reign Time" textFill="#e7e5e5" />
-      <Label layoutX="517.0" layoutY="23.0" text="Details" textFill="#e7e5e5" />
+      <Label layoutX="20.0" layoutY="23.0" text="Quốc Gia" textFill="#e7e5e5" />
+      <Label layoutX="172.0" layoutY="23.0" text="Năm sinh, mất" textFill="#e7e5e5" />
+      <Label layoutX="324.0" layoutY="23.0" text="Thời gian cai trị" textFill="#e7e5e5" />
+      <Label layoutX="517.0" layoutY="23.0" text="Thông tin" textFill="#e7e5e5" />
     </children>
 </HBox>

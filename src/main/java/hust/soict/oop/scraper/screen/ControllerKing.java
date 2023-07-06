@@ -2,7 +2,7 @@ package hust.soict.oop.scraper.screen;
 
 import java.io.IOException;
 
-import hust.soict.oop.scraper.event.Event;
+import hust.soict.oop.scraper.figure.King;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,36 +17,36 @@ import javafx.stage.Stage;
 public class ControllerKing {
 	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
 	
-	private Event event;
+	private King king;
 	
     @FXML
     private HBox itemC;
 
     @FXML
-    private Label eventLabel;
+    private Label kingLabel;
 
     @FXML
-    private Label dateLabel;
+    private Label countryLabel;
 
     @FXML
-    private Label ageLabel;
+    private Label timeLabel;
 
     @FXML
-    private Label dynastyLabel;
+    private Label reignLabel;
 
     @FXML
     private Button detailButton;
     
-    public ControllerKing(Event event) {
-    	this.event = event;
+    public ControllerKing(King king) {
+    	this.king = king;
     }
 
-    public void setEventDetails() {
+    public void setKingDetails() {
         // Set the event details in the UI elements
-        eventLabel.setText(event.getEvent());
-        dateLabel.setText(event.printDate());
-        ageLabel.setText(event.getAge());
-        dynastyLabel.setText(event.getDynasty());
+    	kingLabel.setText(king.getName());
+    	countryLabel.setText(king.getCountry());
+    	timeLabel.setText(king.getSinh() + " - " + king.getMat());
+    	reignLabel.setText(king.getTriVi());
 
         // Set button action or any additional event handling
 //        detailButton.setOnAction(event -> {
@@ -69,7 +69,7 @@ public class ControllerKing {
             
             // Set the event details in the Event.fxml controller
             ControllerModal modalController = loader.getController();
-            modalController.setModalDetails(this.event);
+            modalController.setModalDetails(this.king);
 
             // Show the modal and wait for it to be closed
             modalStage.showAndWait();

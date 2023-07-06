@@ -39,18 +39,13 @@ public class DataAggregation {
         int countNKS = 0;
         int countVS = 0;
         int countSame = 0;
-        //System.out.println("1");
 
         for (Figure nks : NKS) {
-        	System.out.print(nks.getName() + '\n');
-        	
-            
+        	          
             boolean check = false;
             String nameNKS = nks.getName();
             for (Figure vs : VS) {
-//            	System.out.println(vs.getName());
 
-            	
                 String nameVS = vs.getName();
                 if (nameNKS.equals(nameVS)) {
                     countSame++;
