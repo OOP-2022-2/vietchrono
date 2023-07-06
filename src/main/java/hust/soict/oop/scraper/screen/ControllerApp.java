@@ -258,7 +258,7 @@ public class ControllerApp {
             e.printStackTrace();
         }
     }
-//
+
     private HBox loadFigureItem(Figure figure) throws IOException {
         ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
 
