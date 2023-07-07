@@ -1,5 +1,12 @@
 package hust.soict.oop.scraper.screen;
 
+import static hust.soict.oop.scraper.screen.Paths.EVENTS_JSON_PATH;
+import hust.soict.oop.scraper.store.Store;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import hust.soict.oop.scraper.event.Event;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +19,10 @@ public class App extends Application {
 
     private double x, y;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+    	
         ControllerApp controller = new ControllerApp(); // Create an instance of Controller
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_APP_PATH));

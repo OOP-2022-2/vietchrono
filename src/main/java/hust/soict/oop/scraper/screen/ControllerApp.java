@@ -19,11 +19,13 @@ import hust.soict.oop.scraper.figure.Figure;
 import hust.soict.oop.scraper.festival.Festival;
 import hust.soict.oop.scraper.location.Location;
 import static hust.soict.oop.scraper.screen.Paths.*;
+import hust.soict.oop.scraper.store.Store;
 
 public class ControllerApp {
+	private Store store = new Store();
 
     private List<Event> events = new ArrayList<>();
-    ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
+//    ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
 //
 //    private List<Dynasty> dynasties = new ArrayList<>();
 //    ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH, Dynasty[].class);
@@ -77,12 +79,12 @@ public class ControllerApp {
 
     public ControllerApp() {
         // init events
-        events = eventListController.getItems();
+        events = store.getEvents();
 //        dynasties = dynastyListController.getItems();
         kings = kingListController.getItems();
 //        attractions = attractionListController.getItems();
 //        festivals = festivalListController.getItems();
-        figures = figureListController.getItems();
+        figures = store.getFigures();
     }
 
     public void setHeaderSource(String sourcePath) {
