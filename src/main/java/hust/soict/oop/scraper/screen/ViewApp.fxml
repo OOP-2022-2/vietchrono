@@ -198,10 +198,9 @@
                      </children>
                   </HBox>
                   
-                  <!-- Add headers here (don't know how) -->
                   <fx:include source="ViewOverviewHeader.fxml" fx:id="header"/>
                   
-                  <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
+                  <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
                      <content>
                         <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>

@@ -362,10 +362,10 @@ public class KingDataCollector extends FigureDataCollector {
 		
 	}
 	
-	public static void main(String[] args) throws IOException {
-		KingDataCollector k = new KingDataCollector();
-		k.getData(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam"));;
-	// 	System.out.println(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam").size());
-	}
-	//166 nv
+//	public static void main(String[] args) throws IOException {
+//		KingDataCollector k = new KingDataCollector();
+//		k.getData(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam"));;
+//	// 	System.out.println(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam").size());
+//	}
+	//152 nv
 }

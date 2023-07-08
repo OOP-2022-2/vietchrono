@@ -1,5 +1,6 @@
 package hust.soict.oop.scraper.screen;
 
+import static hust.soict.oop.scraper.paths.Paths.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +9,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
-	private static final String VIEW_APP_PATH = "ViewApp.fxml";    
-
+	
     private double x, y;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+    	
         ControllerApp controller = new ControllerApp(); // Create an instance of Controller
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_APP_PATH));

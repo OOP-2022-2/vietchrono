@@ -39,18 +39,13 @@ public class DataAggregation {
         int countNKS = 0;
         int countVS = 0;
         int countSame = 0;
-        //System.out.println("1");
 
         for (Figure nks : NKS) {
-        	//System.out.print(i);
-        	
-            countNKS++;
+        	          
             boolean check = false;
             String nameNKS = nks.getName();
             for (Figure vs : VS) {
-//            	System.out.print(j);
 
-            	
                 String nameVS = vs.getName();
                 if (nameNKS.equals(nameVS)) {
                     countSame++;
@@ -74,15 +69,16 @@ public class DataAggregation {
 
                     String descriptionNKS = nks.getDescription();
                     String descriptionVS = vs.getDescription();
-                    String description = descriptionNKS + " --- theo nguoikesu.com" + "\n" + descriptionVS + " --- theo vansu.vn";
+                    String description = descriptionNKS;
 
                     String otherName = vs.getOtherName();
                     String place = vs.getPlace();
                     String period = vs.getPeriod();
 
-                    Figure f = new Figure(name, time, description, otherName, place, period);
+                    Figure f = new Figure(name, time, description, place, period, otherName);
 
                     figure.add(f);
+                    countNKS++;
                     count++;
 //                    System.out.println("1");
                 }
@@ -90,8 +86,9 @@ public class DataAggregation {
             
             if (check == false) {
                 figure.add(nks);
+                countNKS++;
                 count++;
-                countVS++;
+                
             }
         }
 
@@ -108,6 +105,7 @@ public class DataAggregation {
             }
             if (check == false) {
                     figure.add(vs);
+                    countVS++;
                     count++;
             }
             
@@ -144,4 +142,8 @@ public class DataAggregation {
     public static void main(String[] args) throws IOException {
         Start();
     }
+//    S? l??ng nh�n v?t trong nguoikesu.com: 1460
+//    		S? l??ng nh�n v?t trong vansu.vn: 1886
+//    		S? l??ng nh�n v?t tr�ng nhau: 490
+//    		S? l??ng nh�n v?t sau khi g?p: 3346
 }
