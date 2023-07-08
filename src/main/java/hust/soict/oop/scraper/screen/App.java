@@ -1,12 +1,6 @@
 package hust.soict.oop.scraper.screen;
 
-import static hust.soict.oop.scraper.screen.Paths.EVENTS_JSON_PATH;
-import hust.soict.oop.scraper.store.Store;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import hust.soict.oop.scraper.event.Event;
+import static hust.soict.oop.scraper.paths.Paths.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,8 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
-	private static final String VIEW_APP_PATH = "ViewApp.fxml";    
-
+	
     private double x, y;
 
 
