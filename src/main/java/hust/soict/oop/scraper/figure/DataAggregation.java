@@ -16,132 +16,133 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DataAggregation {
-    public List<Figure> loadDataNKS() throws IOException {
-        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/hust/soict/oop/scraper/figure/data/nks.json"));
-        Gson gson = new GsonBuilder().create();
-        Figure[] figures = gson.fromJson(reader, Figure[].class);
-        List<Figure> NKS = Arrays.asList(figures);
-        return NKS;
-    }
+	public List<Figure> loadDataNKS() throws IOException {
+		Reader reader = Files.newBufferedReader(Paths.get("src/main/java/hust/soict/oop/scraper/figure/data/nks.json"));
+		Gson gson = new GsonBuilder().create();
+		Figure[] figures = gson.fromJson(reader, Figure[].class);
+		List<Figure> NKS = Arrays.asList(figures);
+		return NKS;
+	}
 
-    public List<Figure> loadDataVS() throws IOException {
-        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/hust/soict/oop/scraper/figure/data/vansu.json"));
-        Gson gson = new GsonBuilder().create();
-        Figure[] figures = gson.fromJson(reader, Figure[].class);
-        List<Figure> VS = Arrays.asList(figures);
-        return VS;
-    }
+	public List<Figure> loadDataVS() throws IOException {
+		Reader reader = Files
+				.newBufferedReader(Paths.get("src/main/java/hust/soict/oop/scraper/figure/data/vansu.json"));
+		Gson gson = new GsonBuilder().create();
+		Figure[] figures = gson.fromJson(reader, Figure[].class);
+		List<Figure> VS = Arrays.asList(figures);
+		return VS;
+	}
 
-    public ArrayList<Figure> Aggregation(List<Figure> NKS, List<Figure> VS) {
-        ArrayList<Figure> figure = new ArrayList<Figure>();
+	public ArrayList<Figure> Aggregation(List<Figure> NKS, List<Figure> VS) {
+		ArrayList<Figure> figure = new ArrayList<Figure>();
 
-        int count = 0;
-        int countNKS = 0;
-        int countVS = 0;
-        int countSame = 0;
+		int count = 0;
+		int countNKS = 0;
+		int countVS = 0;
+		int countSame = 0;
 
-        for (Figure nks : NKS) {
-        	          
-            boolean check = false;
-            String nameNKS = nks.getName();
-            for (Figure vs : VS) {
+		for (Figure nks : NKS) {
 
-                String nameVS = vs.getName();
-                if (nameNKS.equals(nameVS)) {
-                    countSame++;
-                    check = true;
-                    String name = nameVS;
-                    String timeNKS = nks.getTime();
-                    String timeVS = vs.getTime();
-                    String time = "Không rõ";
+			boolean check = false;
+			String nameNKS = nks.getName();
+			for (Figure vs : VS) {
 
-                    if (!timeNKS.equals("Không rõ - Không rõ") && !timeVS.equals("Không rõ")) {
-                        time = timeNKS + " --- (theo nguoikesu.com)" + "\n" + timeVS + " --- (theo vansu.vn)";
-                    }
+				String nameVS = vs.getName();
+				if (nameNKS.equals(nameVS)) {
+					countSame++;
+					check = true;
+					String name = nameVS;
+					String timeNKS = nks.getTime();
+					String timeVS = vs.getTime();
+					String time = "Không rõ";
 
-                    if (!timeNKS.equals("Không rõ - Không rõ") && timeVS.equals("Không rõ")) {
-                        time = timeNKS;
-                    }
+					if (!timeNKS.equals("Không rõ - Không rõ") && !timeVS.equals("Không rõ")) {
+						time = timeNKS + " --- (theo nguoikesu.com)" + "\n" + timeVS + " --- (theo vansu.vn)";
+					}
 
-                    if (timeNKS.equals("Không rõ - Không rõ") && !timeVS.equals("Không rõ")) {
-                        time = timeVS;
-                    }
+					if (!timeNKS.equals("Không rõ - Không rõ") && timeVS.equals("Không rõ")) {
+						time = timeNKS;
+					}
 
-                    String descriptionNKS = nks.getDescription();
-                    String descriptionVS = vs.getDescription();
-                    String description = descriptionNKS;
+					if (timeNKS.equals("Không rõ - Không rõ") && !timeVS.equals("Không rõ")) {
+						time = timeVS;
+					}
 
-                    String otherName = vs.getOtherName();
-                    String place = vs.getPlace();
-                    String period = vs.getPeriod();
+					String descriptionNKS = nks.getDescription();
+					String descriptionVS = vs.getDescription();
+					String description = descriptionNKS;
 
-                    Figure f = new Figure(name, time, description, place, period, otherName);
+					String otherName = vs.getOtherName();
+					String place = vs.getPlace();
+					String period = vs.getPeriod();
 
-                    figure.add(f);
-                    countNKS++;
-                    count++;
+					Figure f = new Figure(name, time, description, place, period, otherName);
+
+					figure.add(f);
+					countNKS++;
+					count++;
 //                    System.out.println("1");
-                }
-            }
-            
-            if (check == false) {
-                figure.add(nks);
-                countNKS++;
-                count++;
-                
-            }
-        }
+				}
+			}
 
-        for (Figure vs : VS) {
-            boolean check = false;
-            String nameVS = vs.getName();
+			if (check == false) {
+				figure.add(nks);
+				countNKS++;
+				count++;
 
-            for (Figure f : figure) {
-                String name = f.getName();
-                if (nameVS.equals(name)) {
-                    check = true;
-                    break;
-                }
-            }
-            if (check == false) {
-                    figure.add(vs);
-                    countVS++;
-                    count++;
-            }
-            
-        }
+			}
+		}
 
-        System.out.println("Số lượng nhân vật trong nguoikesu.com: " + countNKS);
-        System.out.println("Số lượng nhân vật trong vansu.vn: " + countVS);
-        System.out.println("Số lượng nhân vật trùng nhau: " + countSame);
-        System.out.println("Số lượng nhân vật sau khi gộp: " + count);
-        
-        return figure;
-    }
+		for (Figure vs : VS) {
+			boolean check = false;
+			String nameVS = vs.getName();
 
-    public static void Start() throws IOException {
-        DataAggregation d = new DataAggregation();
-        List<Figure> listNKS = d.loadDataNKS();
-        List<Figure> listVS = d.loadDataVS();
+			for (Figure f : figure) {
+				String name = f.getName();
+				if (nameVS.equals(name)) {
+					check = true;
+					break;
+				}
+			}
+			if (check == false) {
+				figure.add(vs);
+				countVS++;
+				count++;
+			}
 
-        List<Figure> f = d.Aggregation(listNKS, listVS);
+		}
 
-        Writer file = new FileWriter("src/main/java/hust/soict/oop/scraper/figure/data/figure.json");
+		System.out.println("Số lượng nhân vật trong nguoikesu.com: " + countNKS);
+		System.out.println("Số lượng nhân vật trong vansu.vn: " + countVS);
+		System.out.println("Số lượng nhân vật trùng nhau: " + countSame);
+		System.out.println("Số lượng nhân vật sau khi gộp: " + count);
 
-        file.write("[\n");
-        for (Figure figure : f) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(figure, file);
-            file.write(",\n");
-            file.flush();
-        }
-        file.write("]");
-        file.flush();
-    }
+		return figure;
+	}
 
-    public static void main(String[] args) throws IOException {
-        Start();
-    }
+	public static void Start() throws IOException {
+		DataAggregation d = new DataAggregation();
+		List<Figure> listNKS = d.loadDataNKS();
+		List<Figure> listVS = d.loadDataVS();
+
+		List<Figure> f = d.Aggregation(listNKS, listVS);
+
+		Writer file = new FileWriter("src/main/java/hust/soict/oop/scraper/figure/data/figure.json");
+
+		file.write("[\n");
+		for (Figure figure : f) {
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			gson.toJson(figure, file);
+			file.write(",\n");
+			file.flush();
+		}
+		file.write("]");
+		file.flush();
+	}
+
+	public static void main(String[] args) throws IOException {
+		Start();
+	}
 //    S? l??ng nh�n v?t trong nguoikesu.com: 1460
 //    		S? l??ng nh�n v?t trong vansu.vn: 1886
 //    		S? l??ng nh�n v?t tr�ng nhau: 490

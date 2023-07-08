@@ -16,65 +16,65 @@ import javafx.stage.Stage;
 
 public class ControllerDynasty {
 	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
-	
+
 	private Dynasty dynasty;
-	
-    @FXML
-    private HBox itemC;
 
-    @FXML
-    private Label dynastyLabel;
+	@FXML
+	private HBox itemC;
 
-    @FXML
-    private Label periodLabel;
+	@FXML
+	private Label dynastyLabel;
 
-    @FXML
-    private Label enemyLabel;
+	@FXML
+	private Label periodLabel;
 
-    @FXML
-    private Label resultLabel;
+	@FXML
+	private Label enemyLabel;
 
-    @FXML
-    private Button detailButton;
-    
-    public ControllerDynasty(Dynasty dynasty) {
-    	this.dynasty = dynasty;
-    }
+	@FXML
+	private Label resultLabel;
 
-    public void setDynastyDetails() {
-        // Set the event details in the UI elements
-    	dynastyLabel.setText(dynasty.getXungDot());
-    	periodLabel.setText(dynasty.getThoiKy());
-    	enemyLabel.setText(dynasty.getDoiPhuong());
-    	resultLabel.setText(dynasty.getKetQua());
+	@FXML
+	private Button detailButton;
 
-        // Set button action or any additional event handling
+	public ControllerDynasty(Dynasty dynasty) {
+		this.dynasty = dynasty;
+	}
+
+	public void setDynastyDetails() {
+		// Set the event details in the UI elements
+		dynastyLabel.setText(dynasty.getXungDot());
+		periodLabel.setText(dynasty.getThoiKy());
+		enemyLabel.setText(dynasty.getDoiPhuong());
+		resultLabel.setText(dynasty.getKetQua());
+
+		// Set button action or any additional event handling
 //        detailButton.setOnAction(event -> {
 //            // Handle the button click event for the event details
 //        });
-    }
-    
-    @FXML
-    private void handleDetailButtonClick(ActionEvent event) {
-        try {
-            // Load the FXML file for the modal content            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_MODAL_PATH));
-            Parent root = loader.load();
+	}
 
-            // Create a new stage (modal) to show the content
-            Stage modalStage = new Stage();
-            modalStage.initModality(Modality.APPLICATION_MODAL);
-            modalStage.setTitle("Details");
-            modalStage.setScene(new Scene(root));
-            
-            // Set the event details in the Event.fxml controller
-            ControllerModal modalController = loader.getController();
-            modalController.setModalDetails(this.dynasty);
+	@FXML
+	private void handleDetailButtonClick(ActionEvent event) {
+		try {
+			// Load the FXML file for the modal content
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_MODAL_PATH));
+			Parent root = loader.load();
 
-            // Show the modal and wait for it to be closed
-            modalStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+			// Create a new stage (modal) to show the content
+			Stage modalStage = new Stage();
+			modalStage.initModality(Modality.APPLICATION_MODAL);
+			modalStage.setTitle("Details");
+			modalStage.setScene(new Scene(root));
+
+			// Set the event details in the Event.fxml controller
+			ControllerModal modalController = loader.getController();
+			modalController.setModalDetails(this.dynasty);
+
+			// Show the modal and wait for it to be closed
+			modalStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

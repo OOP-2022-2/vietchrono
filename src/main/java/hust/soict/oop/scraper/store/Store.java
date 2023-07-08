@@ -15,27 +15,34 @@ import hust.soict.oop.scraper.screen.ControllerItemList;
 
 public class Store {
 
-    private ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
-    private ControllerItemList<King> kingListController = new ControllerItemList<>(KINGS_JSON_PATH, King[].class);
-    private ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH, Figure[].class);
-    private ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH, Dynasty[].class);
-    private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH, Location[].class);
-    private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH, Festival[].class);
-    
-    private List<Event> events = new ArrayList<>();
-    private List<Figure> figures = new ArrayList<>();
-    private List<King> kings = new ArrayList<>();
-    private List<Festival> festivals = new ArrayList<>();
-        Figure[].class);
-	
+	private ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
+	private ControllerItemList<King> kingListController = new ControllerItemList<>(KINGS_JSON_PATH, King[].class);
+	private ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH,
+			Figure[].class);
+	private ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH,
+			Dynasty[].class);
+	private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH,
+			Location[].class);
+	private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH,
+			Festival[].class);
+
+	private List<Event> events = new ArrayList<>();
+	private List<Figure> figures = new ArrayList<>();
+	private List<King> kings = new ArrayList<>();
+	private List<Festival> festivals = new ArrayList<>();
+	private List<Location> locations = new ArrayList<>();
+	private List<Dynasty> dynasties = new ArrayList<>();
+
 	public Store() {
 		events = eventListController.getItems();
 		figures = figureListController.getItems();
 		kings = kingListController.getItems();
 		festivals = festivalListController.getItems();
+		locations = attractionListController.getItems();
+		dynasties = dynastyListController.getItems();
 	}
 
-  public List<Event> getEvents() {
+	public List<Event> getEvents() {
 		return events;
 	}
 
@@ -49,6 +56,14 @@ public class Store {
 
 	public List<Festival> getFestivals() {
 		return festivals;
+	}
+
+	public List<Location> getLocations() {
+		return locations;
+	}
+
+	public List<Dynasty> getDynasties() {
+		return dynasties;
 	}
 
 	public List<Event> searchEvent(String query) {
@@ -71,22 +86,46 @@ public class Store {
 		}
 		return result;
 	}
-	
+
 	public List<Figure> searchFigure(String query) {
 		List<Figure> result = new ArrayList<>();
 		for (Figure figure : figures) {
-			if (figure.getName() != null && figure.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+			if (figure.getName() != null
+					&& figure.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
 				result.add(figure);
 			}
 		}
 		return result;
 	}
-	
+
 	public List<Festival> searchFestival(String query) {
 		List<Festival> result = new ArrayList<>();
 		for (Festival festival : festivals) {
-			if (festival.getName() != null && festival.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+			if (festival.getName() != null
+					&& festival.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
 				result.add(festival);
+			}
+		}
+		return result;
+	}
+
+	public List<Dynasty> searchDynasty(String query) {
+		List<Dynasty> result = new ArrayList<>();
+		for (Dynasty dynasty : dynasties) {
+			if (dynasty.getThoiKy() != null
+					&& dynasty.getThoiKy().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+				result.add(dynasty);
+			}
+		}
+		return result;
+	}
+
+	public List<Location> searchLocation(String query) {
+		List<Location> result = new ArrayList<>();
+		for (Location location : locations) {
+			if (location.getName() != null
+					&& location.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+				result.add(location);
 			}
 		}
 		return result;

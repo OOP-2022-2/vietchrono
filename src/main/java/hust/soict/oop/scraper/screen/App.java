@@ -9,38 +9,37 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
-	
-    private double x, y;
 
+	private double x, y;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-    	
-        ControllerApp controller = new ControllerApp(); // Create an instance of Controller
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_APP_PATH));
-        loader.setController(controller); // Set the controller instance
+		ControllerApp controller = new ControllerApp(); // Create an instance of Controller
 
-        Parent root = loader.load();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_APP_PATH));
+		loader.setController(controller); // Set the controller instance
 
-        primaryStage.setScene(new Scene(root));
-        // Set stage borderless
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+		Parent root = loader.load();
 
-        // Drag the window
-        root.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-        root.setOnMouseDragged(event -> {
-            primaryStage.setX(event.getScreenX() - x);
-            primaryStage.setY(event.getScreenY() - y);
-        });
+		primaryStage.setScene(new Scene(root));
+		// Set stage borderless
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        primaryStage.show();
-    }
+		// Drag the window
+		root.setOnMousePressed(event -> {
+			x = event.getSceneX();
+			y = event.getSceneY();
+		});
+		root.setOnMouseDragged(event -> {
+			primaryStage.setX(event.getScreenX() - x);
+			primaryStage.setY(event.getScreenY() - y);
+		});
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 }

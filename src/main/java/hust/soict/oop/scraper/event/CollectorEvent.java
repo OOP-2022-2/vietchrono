@@ -8,30 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CollectorEvent {
-    protected List<Event> events;
-    private ObjectMapper objectMapper;
+	protected List<Event> events;
+	private ObjectMapper objectMapper;
 
-    public CollectorEvent() {
-        events = new ArrayList<>();
-        objectMapper = new ObjectMapper();
-    }
+	public CollectorEvent() {
+		events = new ArrayList<>();
+		objectMapper = new ObjectMapper();
+	}
 
-    public abstract void collectEventData(String url);
+	public abstract void collectEventData(String url);
 
-    public void printEvents() {
-        events.forEach(event -> {
-            System.out.printf("%d. %s\n", events.indexOf(event) + 1, event.toString());
-        });
-    }
+	public void printEvents() {
+		events.forEach(event -> {
+			System.out.printf("%d. %s\n", events.indexOf(event) + 1, event.toString());
+		});
+	}
 
-    public void writeEventsToFile(String file) {
-        try (FileWriter fileWriter = new FileWriter(file)) {
-            String json = objectMapper.writeValueAsString(events);
-            fileWriter.write(json);
-            System.out.println("\nData written to file successfully.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	public void writeEventsToFile(String file) {
+		try (FileWriter fileWriter = new FileWriter(file)) {
+			String json = objectMapper.writeValueAsString(events);
+			fileWriter.write(json);
+			System.out.println("\nData written to file successfully.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

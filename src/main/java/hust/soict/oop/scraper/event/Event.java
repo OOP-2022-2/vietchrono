@@ -1,7 +1,7 @@
 package hust.soict.oop.scraper.event;
 
 public class Event {
-	
+
 	private String event;
 	private String from;
 	private String to;
@@ -10,11 +10,11 @@ public class Event {
 	private String description;
 	private Image image;
 	private String source;
-	
+
 	public Event() {
 		super();
 	}
-	
+
 	public Event(String event, String from, String to, String source) {
 		super();
 		this.event = event;
@@ -22,8 +22,9 @@ public class Event {
 		this.to = to;
 		this.source = source;
 	}
-	
-	public Event(String age, String dynasty, String event, String from, String to, String description, Image image, String source) {
+
+	public Event(String age, String dynasty, String event, String from, String to, String description, Image image,
+			String source) {
 		this(event, from, to, source);
 		this.age = age;
 		this.dynasty = dynasty;
@@ -38,7 +39,7 @@ public class Event {
 	public void setEvent(String event) {
 		this.event = event;
 	}
-	
+
 	public String getFrom() {
 		return from;
 	}
@@ -46,7 +47,7 @@ public class Event {
 	public void setFrom(String from) {
 		this.from = from;
 	}
-   
+
 	public String getTo() {
 		return to;
 	}
@@ -54,7 +55,7 @@ public class Event {
 	public void setTo(String to) {
 		this.to = to;
 	}
-	
+
 	public String getAge() {
 		return age;
 	}
@@ -62,15 +63,15 @@ public class Event {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	
+
 	public String getDynasty() {
 		return dynasty;
 	}
-	
+
 	public void setDynasty(String dynasty) {
 		this.dynasty = dynasty;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -80,7 +81,7 @@ public class Event {
 	}
 
 	public Image getImage() {
-		return image; 
+		return image;
 	}
 
 	public void setImage(Image image) {
@@ -101,11 +102,10 @@ public class Event {
 		}
 		return getFrom() + " - " + getTo();
 	}
-	
+
 	@Override
 	public String toString() {
-		return getTo() == "" ?
-				age + "   " + dynasty + "   " + getEvent() + "   " + getFrom() 
+		return getTo() == "" ? age + "   " + dynasty + "   " + getEvent() + "   " + getFrom()
 				: age + "   " + dynasty + "   " + getEvent() + "   " + getFrom() + " - " + getTo();
 	}
 

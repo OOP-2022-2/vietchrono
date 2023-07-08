@@ -11,16 +11,16 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ControllerItemList<T> {
-	
+
 	private List<T> items = new ArrayList<>();
-	
+
 	public ControllerItemList(String dataFilePath, Class<T[]> type) {
 		loadItems(dataFilePath, type);
 	}
 
-    public void loadItems(String dataFilePath, Class<T[]> type) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
+	public void loadItems(String dataFilePath, Class<T[]> type) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
 			items = Arrays.asList(objectMapper.readValue(Paths.get(dataFilePath).toFile(), type));
 		} catch (JsonParseException e) {
 			e.printStackTrace();
@@ -29,9 +29,9 @@ public class ControllerItemList<T> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
-    
-    public List<T> getItems() {
-    	return items;
-    }
+	}
+
+	public List<T> getItems() {
+		return items;
+	}
 }
