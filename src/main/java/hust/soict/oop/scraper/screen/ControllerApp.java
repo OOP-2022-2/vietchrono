@@ -32,8 +32,8 @@ public class ControllerApp {
 	private List<Figure> figures = new ArrayList<>();
 	private List<King> kings = new ArrayList<>();
 	private List<Festival> festivals = new ArrayList<>();
-//    private List<Dynasty> dynasties = new ArrayList<>();
-//    private List<Location> attractions = new ArrayList<>();
+  private List<Dynasty> dynasties = new ArrayList<>();
+  private List<Location> attractions = new ArrayList<>();
 
 	@FXML
 	private Label titleLabel;
@@ -84,6 +84,8 @@ public class ControllerApp {
 		kings = store.getKings();
 		figures = store.getFigures();
 		festivals = store.getFestivals();
+		attractions = store.getLocation();
+		dynasties = store.getDynasties();
 	}
 	
 	public void search() {
@@ -141,6 +143,15 @@ public class ControllerApp {
 		} else if (source == btnFestivals) {
 			loadFestivalItems();
 		}
+		else if (source == btnFestivals) {
+			loadFestivalItems();
+		}
+		else if (source == btnAttractions) {
+			loadAttractionItems();
+		}
+		else if (source == btnDynasties) {
+			loadDynastiesItems();
+		}
 
 		if (headerPaths.containsKey(source)) {
 			setHeaderSource(headerPaths.get(source));
@@ -170,52 +181,52 @@ public class ControllerApp {
 		return eventItem;
 	}
 
-//    public void loadDynastyItems() {
-//        pnItems.getChildren().clear();
-//
-//        try {
-//            for (Dynasty dynasty : dynasties) {
-//                HBox dynastyItem = loadDynastyItem(dynasty);
-//                pnItems.getChildren().add(dynastyItem);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private HBox loadDynastyItem(Dynasty dynasty) throws IOException {
-//        ControllerDynasty controller = new ControllerDynasty(dynasty); // Create an instance of Controller
-//
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_DYNASTY_PATH));
-//        loader.setController(controller); // Set the controller instance
-//        HBox dynastyItem = loader.load();
-//        controller.setDynastyDetails();
-//        return dynastyItem;
-//    }
-//
-//    public void loadAttractionItems() {
-//        pnItems.getChildren().clear();
-//
-//        try {
-//            for (Location attraction : attractions) {
-//                HBox attractionItem = loadAttractionItem(attraction);
-//                pnItems.getChildren().add(attractionItem);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private HBox loadAttractionItem(Location attraction) throws IOException {
-//        ControllerAttraction controller = new ControllerAttraction(attraction); // Create an instance of Controller
-//
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_ATTRACTION_PATH));
-//        loader.setController(controller); // Set the controller instance
-//        HBox attractionItem = loader.load();
-//        controller.setAttractionDetails();
-//        return attractionItem;
-//    }
-//
+    public void loadDynastiesItems() {
+        pnItems.getChildren().clear();
+
+        try {
+            for (Dynasty dynasty : dynasties) {
+                HBox dynastyItem = loadDynastyItem(dynasty);
+                pnItems.getChildren().add(dynastyItem);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private HBox loadDynastyItem(Dynasty dynasty) throws IOException {
+        ControllerDynasty controller = new ControllerDynasty(dynasty); // Create an instance of Controller
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_DYNASTY_PATH));
+        loader.setController(controller); // Set the controller instance
+        HBox dynastyItem = loader.load();
+        controller.setDynastyDetails();
+        return dynastyItem;
+    }
+
+    public void loadAttractionItems() {
+        pnItems.getChildren().clear();
+
+        try {
+            for (Location attraction : attractions) {
+                HBox attractionItem = loadAttractionItem(attraction);
+                pnItems.getChildren().add(attractionItem);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private HBox loadAttractionItem(Location attraction) throws IOException {
+        ControllerAttraction controller = new ControllerAttraction(attraction); // Create an instance of Controller
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_ATTRACTION_PATH));
+        loader.setController(controller); // Set the controller instance
+        HBox attractionItem = loader.load();
+        controller.setAttractionDetails();
+        return attractionItem;
+    }
+
 	public void loadKingItems() {
 		pnItems.getChildren().clear();
 

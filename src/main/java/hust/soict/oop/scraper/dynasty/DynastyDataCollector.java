@@ -14,10 +14,11 @@ import java.util.List;
 
 public class DynastyDataCollector {
     public static void main(String[] args) {
-        String url = "https://vi.wikipedia.org/wiki/C%C3%A1c_cu%E1%BB%99c_chi%E1%BA%BFn_tranh_Vi%E1%BB%87t_Nam_tham_gia";
-        String filePath = "C:\\Users\\84332\\Downloads\\Dynasty\\src\\main\\java\\hust\\soict\\oop\\scraper\\dynasty\\data\\dynasties.json";
+        
 
         try {
+        	String url = "https://vi.wikipedia.org/wiki/C%C3%A1c_cu%E1%BB%99c_chi%E1%BA%BFn_tranh_Vi%E1%BB%87t_Nam_tham_gia";
+            String filePath = "src/main/java/hust/soict/oop/scraper/dynasty/data/dynasties.json";
             // Tải nội dung HTML từ trang web
             Document doc = Jsoup.connect(url).get();
 
@@ -27,12 +28,13 @@ public class DynastyDataCollector {
             // Kiểm tra nếu có bảng trong trang web
             if (!tables.isEmpty()) {
                 // Tạo danh sách chứa dữ liệu của tất cả các bảng
-                List<List<TableRow>> allTableData = new ArrayList<>();
+//                List<List<Dynasty>> allTableData = new ArrayList<>();
+                List<Dynasty> tableData = new ArrayList<>();
 
                 // Lặp qua từng bảng
                 for (Element table : tables) {
                     // Tạo danh sách chứa dữ liệu của bảng hiện tại
-                    List<TableRow> tableData = new ArrayList<>();
+                    
 
                     // Lấy các hàng trong bảng
                     Elements rows = table.select("tr");
@@ -46,20 +48,20 @@ public class DynastyDataCollector {
                             String doiPhuong = cells.get(2).text();
                             String ketQua = cells.get(3).text();
 
-                            TableRow rowData = new TableRow(xungDot, thoiKy, doiPhuong, ketQua);
+                            Dynasty rowData = new Dynasty(xungDot, thoiKy, doiPhuong, ketQua);
                             tableData.add(rowData);
                         }
                     }
 
                     // Thêm dữ liệu của bảng hiện tại vào danh sách chung
-                    allTableData.add(tableData);
+//                    allTableData.add(tableData);
                 }
 
                 // Khởi tạo đối tượng Gson
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
                 // Chuyển đổi danh sách đối tượng thành chuỗi JSON
-                String json = gson.toJson(allTableData);
+                String json = gson.toJson(tableData);
 
                 // Ghi chuỗi JSON vào tệp
                 FileWriter writer = new FileWriter(filePath);

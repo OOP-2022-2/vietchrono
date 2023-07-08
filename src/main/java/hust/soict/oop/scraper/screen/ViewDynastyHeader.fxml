@@ -17,9 +17,29 @@
 
 <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="120.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
      <children>
-        <Label textFill="#e7e5e5" text="Dynasty Header">
+        <Label textFill="#e7e5e5" text="Xung đột">
             <HBox.margin>
                 <Insets left="10.0" />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Thời kỳ">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Đối phương">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Kết quả">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Details">
+            <HBox.margin>
+                <Insets />
             </HBox.margin>
         </Label>
     </children>

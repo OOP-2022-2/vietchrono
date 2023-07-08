@@ -5,23 +5,10 @@ public class Location {
     private String name;
     private String date;
     private String location;
-    private String description;
-    private List<String> historicalFigures;
-    private String significance;
-    private String cause;
-    private String outcome;
-    private List<String> relatedEvents;
-    private List<String> sources;
+    private String type;
 
-    // Constructor
-    public Location(String name, String date, String location, String description) {
-        this.name = name;
-        this.date = date;
-        this.location = location;
-        this.description = description;
-        this.historicalFigures = new ArrayList<>();
-        this.relatedEvents = new ArrayList<>();
-        this.sources = new ArrayList<>();
+    public Location() {
+    	
     }
 
     // Getters and Setters for the attributes
@@ -45,63 +32,16 @@ public class Location {
         return location;
     }
 
-    public void setLocation(String location) {
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setLocation(String location) {
         this.location = location;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<String> getHistoricalFigures() {
-        return historicalFigures;
-    }
-
-    public void addHistoricalFigure(String historicalFigure) {
-        this.historicalFigures.add(historicalFigure);
-    }
-
-    public String getSignificance() {
-        return significance;
-    }
-
-    public void setSignificance(String significance) {
-        this.significance = significance;
-    }
-
-    public String getCause() {
-        return cause;
-    }
-
-    public void setCause(String cause) {
-        this.cause = cause;
-    }
-
-    public String getOutcome() {
-        return outcome;
-    }
-
-    public void setOutcome(String outcome) {
-        this.outcome = outcome;
-    }
-
-    public List<String> getRelatedEvents() {
-        return relatedEvents;
-    }
-
-    public void addRelatedEvent(String relatedEvent) {
-        this.relatedEvents.add(relatedEvent);
-    }
-
-    public List<String> getSources() {
-        return sources;
-    }
-
-    public void addSource(String source) {
-        this.sources.add(source);
-    }
 }

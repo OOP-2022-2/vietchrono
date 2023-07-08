@@ -15,20 +15,19 @@ import hust.soict.oop.scraper.screen.ControllerItemList;
 
 public class Store {
 
-	private List<Event> events = new ArrayList<>();
-	private List<Figure> figures = new ArrayList<>();
-	private List<King> kings = new ArrayList<>();
-	private List<Festival> festivals = new ArrayList<>();
-
-	private ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
-	private ControllerItemList<King> kingListController = new ControllerItemList<>(KINGS_JSON_PATH, King[].class);
-	private ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH,
-			Figure[].class);
-	private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH,
-			Festival[].class);
-//    private ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH, Dynasty[].class);
-//    private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH, Location[].class);
-
+    private ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
+    private ControllerItemList<King> kingListController = new ControllerItemList<>(KINGS_JSON_PATH, King[].class);
+    private ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH, Figure[].class);
+    private ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH, Dynasty[].class);
+    private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH, Location[].class);
+    private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH, Festival[].class);
+    
+    private List<Event> events = new ArrayList<>();
+    private List<Figure> figures = new ArrayList<>();
+    private List<King> kings = new ArrayList<>();
+    private List<Festival> festivals = new ArrayList<>();
+        Figure[].class);
+	
 	public Store() {
 		events = eventListController.getItems();
 		figures = figureListController.getItems();
@@ -36,7 +35,7 @@ public class Store {
 		festivals = festivalListController.getItems();
 	}
 
-	public List<Event> getEvents() {
+  public List<Event> getEvents() {
 		return events;
 	}
 

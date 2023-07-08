@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDataCollector {
+	
     public static void main(String[] args) {
         try {
+        	Location lo = new Location();
             // Kết nối và tải trang web
             Document doc = Jsoup.connect("https://vi.wikipedia.org/wiki/Danh_s%C3%A1ch_Di_t%C3%ADch_qu%E1%BB%91c_gia_Vi%E1%BB%87t_Nam").get();
 
@@ -54,19 +56,34 @@ public class LocationDataCollector {
 
             // Tạo đối tượng JSON từ danh sách data
             JSONArray jsonArray = new JSONArray();
+            JSONObject jsonObject = new JSONObject();
             for (String[] rowData : data) {
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("Di tích", rowData[0]);
-                jsonObject.put("vị trí", rowData[1]);
-                jsonObject.put("loại di tích", rowData[2]);
-                jsonObject.put("năm công nhận", rowData[3]);
-                jsonObject.put("ghi chú", rowData[4]);
+//                JSONObject jsonObject = new JSONObject();
+//                jsonObject.put("Di tích", rowData[0]);
+//                jsonObject.put("vị trí", rowData[1]);
+//                jsonObject.put("loại di tích", rowData[2]);
+//                jsonObject.put("năm công nhận", rowData[3]);
+//                jsonObject.put("ghi chú", rowData[4]);
+//                jsonArray.put(jsonObject);
+                
+                lo.setName(rowData[0]);
+                lo.setLocation(rowData[1]);
+                lo.setType(rowData[2]);
+                lo.setDate(rowData[3]);
+                
+                
+                jsonObject.put("date", lo.getDate());
+                jsonObject.put("location", lo.getLocation());
+                jsonObject.put("name", lo.getName());
+                jsonObject.put("type", lo.getType());
                 jsonArray.put(jsonObject);
+                
+                
             }
-
+            System.out.println(jsonObject);
             // Ghi dữ liệu vào file JSON
             String json = jsonArray.toString(4);
-            String filePath = "C:\\Users\\84332\\Downloads\\Location\\src\\main\\java\\hust\\soict\\oop\\scraper\\location\\data\\locations.json";
+            String filePath = "src/main/java/hust/soict/oop/scraper/location/data/locations.json";
             Files.write(Paths.get(filePath), json.getBytes());
 
             System.out.println("Dữ liệu đã được ghi vào file locations.json");

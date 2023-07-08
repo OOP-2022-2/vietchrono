@@ -80,7 +80,33 @@ public class ControllerModal {
         contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
     }
     
-    public void setModalDetails(Dynasty dynasty) {}
+    public void setModalDetails(Dynasty dynasty) {
+    	Label xungDotLabel = new Label("Xung đột: " + dynasty.getXungDot());
+    	Label thoiKyLabel = new Label("Thời kỳ: " + dynasty.getThoiKy());
+    	Label doiPhuongLabel = new Label("Đối Phương: " + dynasty.getDoiPhuong());
+    	Label ketQuaLabel = new Label("Kết Quả" + dynasty.getKetQua());
+    	
+    	xungDotLabel.setStyle("-fx-text-fill: white;");
+    	thoiKyLabel.setStyle("-fx-text-fill: white;");
+    	doiPhuongLabel.setStyle("-fx-text-fill: white;");
+    	ketQuaLabel.setStyle("-fx-text-fill: white;");
+    	
+    	xungDotLabel.setWrapText(true);
+    	thoiKyLabel.setWrapText(true);
+    	doiPhuongLabel.setWrapText(true);
+    	ketQuaLabel.setWrapText(true);
+    	
+    	VBox vbox = new VBox();
+        vbox.getChildren().addAll(xungDotLabel, thoiKyLabel, doiPhuongLabel, ketQuaLabel);
+        
+        vbox.setSpacing(10);
+
+        // Apply margins to the labels
+        VBox.setMargin(xungDotLabel, new Insets(20, 10, 0, 20));
+        VBox.setMargin(thoiKyLabel, new Insets(0, 10, 0, 20));
+        VBox.setMargin(doiPhuongLabel, new Insets(0, 10, 0, 20));
+        VBox.setMargin(ketQuaLabel, new Insets(0, 10, 0, 20));
+    }
     public void setModalDetails(King king) {
     	Label kingLabel = new Label("Vua: " + king.getName());
     	Label countryLabel = new Label("Quốc gia: " + king.getCountry());
@@ -331,6 +357,45 @@ public class ControllerModal {
         contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
         contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
     }
+
+    public void setModalDetails(Location attraction) {
+    	Label attractionLabel = new Label("Di tích: " + attraction.getName());
+    	Label dateLabel = new Label("Thời gian công nhận: " + attraction.getDate());
+        Label locationLabel = new Label("Địa điểm: " + attraction.getLocation());
+        Label typeLabel = new Label("Loại di tích: " + attraction.getType());
+        
+        attractionLabel.setStyle("-fx-text-fill: white;");
+        dateLabel.setStyle("-fx-text-fill: white;");
+        locationLabel.setStyle("-fx-text-fill: white;");
+        typeLabel.setStyle("-fx-text-fill: white;");
+        
+        attractionLabel.setWrapText(true);
+        dateLabel.setWrapText(true);
+        locationLabel.setWrapText(true);
+        typeLabel.setWrapText(true);
+        
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(attractionLabel, dateLabel, locationLabel, typeLabel);
+        
+        vbox.setSpacing(10);
+
+        // Apply margins to the labels
+        VBox.setMargin(attractionLabel, new Insets(20, 10, 0, 20));
+        VBox.setMargin(dateLabel, new Insets(0, 10, 0, 20));
+        VBox.setMargin(locationLabel, new Insets(0, 10, 0, 20));
+        VBox.setMargin(typeLabel, new Insets(0, 10, 0, 20));
+        
+        // Clear existing children from contentBox
+        contentBox.getChildren().clear();
+
+        // Add the VBox to the contentBox
+        contentBox.getChildren().add(vbox);
+
+        // Bind the contentBox width to the modalScrollPane width
+        contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
+        contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
+    }
+  
     public void setModalDetails(Festival festival) {
     	Label nameLabel = new Label("Event: " + festival.getName());
         Label dateLabel = new Label("Date: " + festival.getDate());
@@ -371,6 +436,5 @@ public class ControllerModal {
         contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
         contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
     }
-    public void setModalDetails(Location attraction) {}
 
 }
