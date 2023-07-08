@@ -2,7 +2,7 @@ package hust.soict.oop.scraper.screen;
 
 import java.io.IOException;
 
-import hust.soict.oop.scraper.event.Event;
+import hust.soict.oop.scraper.festival.Festival;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,41 +17,31 @@ import javafx.stage.Stage;
 public class ControllerFestival {
 	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
 	
-	private Event event;
+	private Festival festival;
 	
     @FXML
     private HBox itemC;
-
+    
     @FXML
-    private Label eventLabel;
-
+    private Label nameLabel;
+    
     @FXML
     private Label dateLabel;
-
+    
     @FXML
-    private Label ageLabel;
-
-    @FXML
-    private Label dynastyLabel;
-
+    private Label locationLabel;
+    
     @FXML
     private Button detailButton;
     
-    public ControllerFestival(Event event) {
-    	this.event = event;
+    public ControllerFestival(Festival festival) {
+    	this.festival = festival;
     }
 
-    public void setEventDetails() {
-        // Set the event details in the UI elements
-        eventLabel.setText(event.getEvent());
-        dateLabel.setText(event.printDate());
-        ageLabel.setText(event.getAge());
-        dynastyLabel.setText(event.getDynasty());
-
-        // Set button action or any additional event handling
-//        detailButton.setOnAction(event -> {
-//            // Handle the button click event for the event details
-//        });
+    public void setFestivalDetails() {
+    	nameLabel.setText(festival.getName());
+    	dateLabel.setText(festival.getDate());
+    	locationLabel.setText(festival.getLocation());
     }
     
     @FXML
@@ -69,7 +59,7 @@ public class ControllerFestival {
             
             // Set the event details in the Event.fxml controller
             ControllerModal modalController = loader.getController();
-            modalController.setModalDetails(this.event);
+            modalController.setModalDetails(this.festival);
 
             // Show the modal and wait for it to be closed
             modalStage.showAndWait();

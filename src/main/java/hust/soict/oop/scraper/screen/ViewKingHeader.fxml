@@ -6,14 +6,30 @@
 
 <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="120.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
      <children>
-        <Label text="Vua" textFill="#e7e5e5">
+        <Label textFill="#e7e5e5" text="Vua" wrapText="true">
             <HBox.margin>
                 <Insets left="10.0" />
             </HBox.margin>
         </Label>
-      <Label layoutX="20.0" layoutY="23.0" text="Quốc Gia" textFill="#e7e5e5" />
-      <Label layoutX="172.0" layoutY="23.0" text="Năm sinh, mất" textFill="#e7e5e5" />
-      <Label layoutX="324.0" layoutY="23.0" text="Thời gian cai trị" textFill="#e7e5e5" />
-      <Label layoutX="517.0" layoutY="23.0" text="Thông tin" textFill="#e7e5e5" />
+        <Label textFill="#e7e5e5" text="Quốc Gia" wrapText="true">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Năm sinh - Năm mất" wrapText="true">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Thời gian cai trị" wrapText="true">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label textFill="#e7e5e5" text="Thông tin" wrapText="true">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
     </children>
 </HBox>

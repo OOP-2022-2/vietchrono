@@ -331,7 +331,46 @@ public class ControllerModal {
         contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
         contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
     }
-    public void setModalDetails(Festival festival) {}
+    public void setModalDetails(Festival festival) {
+    	Label nameLabel = new Label("Event: " + festival.getName());
+        Label dateLabel = new Label("Date: " + festival.getDate());
+        Label locationLabel = new Label("Location: " + festival.getLocation());
+        Label descriptionLabel = new Label("Description: " + festival.getDescription());
+        
+        nameLabel.setStyle("-fx-text-fill: white;");
+        dateLabel.setStyle("-fx-text-fill: white;");
+        locationLabel.setStyle("-fx-text-fill: white;");
+        descriptionLabel.setStyle("-fx-text-fill: white;");
+
+        // Set wrap text for all labels
+        nameLabel.setWrapText(true);
+        dateLabel.setWrapText(true);
+        locationLabel.setWrapText(true);
+        descriptionLabel.setWrapText(true);
+
+        // Create a VBox to hold all the non-null labels
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(nameLabel, dateLabel, locationLabel, descriptionLabel);
+
+        // Set the spacing between labels
+        vbox.setSpacing(10);
+
+        // Apply margins to the labels
+        VBox.setMargin(nameLabel, new Insets(20, 10, 0, 20));
+        VBox.setMargin(dateLabel, new Insets(0, 10, 0, 20));
+        VBox.setMargin(locationLabel, new Insets(0, 10, 0, 20));
+        VBox.setMargin(descriptionLabel, new Insets(0, 10, 20, 20));
+
+        // Clear existing children from contentBox
+        contentBox.getChildren().clear();
+
+        // Add the VBox to the contentBox
+        contentBox.getChildren().add(vbox);
+
+        // Bind the contentBox width to the modalScrollPane width
+        contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
+        contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
+    }
     public void setModalDetails(Location attraction) {}
 
 }

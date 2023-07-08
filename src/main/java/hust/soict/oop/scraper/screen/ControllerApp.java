@@ -9,6 +9,8 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 import static hust.soict.oop.scraper.paths.Paths.*;
 
@@ -29,13 +31,15 @@ public class ControllerApp {
 	private List<Event> events = new ArrayList<>();
 	private List<Figure> figures = new ArrayList<>();
 	private List<King> kings = new ArrayList<>();
-
+	private List<Festival> festivals = new ArrayList<>();
 //    private List<Dynasty> dynasties = new ArrayList<>();
 //    private List<Location> attractions = new ArrayList<>();
-//    private List<Festival> festivals = new ArrayList<>();
 
 	@FXML
 	private Label titleLabel;
+	
+	@FXML
+	private TextField searchBar;
 
 	@FXML
 	private HBox header;
@@ -67,6 +71,11 @@ public class ControllerApp {
 	@FXML
 	public void initialize() {
 		setHeaderSource(VIEW_OVERVIEW_HEADER_PATH);
+		searchBar.setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.ENTER) {
+				search();
+			}
+		});
 	}
 
 	public ControllerApp() {
@@ -74,6 +83,23 @@ public class ControllerApp {
 		events = store.getEvents();
 		kings = store.getKings();
 		figures = store.getFigures();
+		festivals = store.getFestivals();
+	}
+	
+	public void search() {
+		if (titleLabel.getText().equals("Events")) {
+			events = store.searchEvent(searchBar.getText());
+			loadEventItems();
+		} else if (titleLabel.getText().equals("Kings")) {
+			kings = store.searchKing(searchBar.getText());
+			loadKingItems();
+		} else if (titleLabel.getText().equals("Festivals")) {
+			festivals = store.searchFestival(searchBar.getText());
+			loadFestivalItems();
+		} else if (titleLabel.getText().equals("Figures")) {
+			figures = store.searchFigure(searchBar.getText());
+			loadFigureItems();
+		}
 	}
 
 	public void setHeaderSource(String sourcePath) {
@@ -103,18 +129,17 @@ public class ControllerApp {
 		headerPaths.put(btnEvents, VIEW_EVENT_HEADER_PATH);
 		headerPaths.put(btnAttractions, VIEW_ATTRACTION_HEADER_PATH);
 		headerPaths.put(btnFestivals, VIEW_FESTIVAL_HEADER_PATH);
-		
+
 		if (source == btnOverview) {
-			
-		} 
-		else if (source == btnEvents) {
+
+		} else if (source == btnEvents) {
 			loadEventItems();
-		}
-		else if (source == btnKings) {
+		} else if (source == btnKings) {
 			loadKingItems();
-		}
-		else if (source == btnFigures) {
+		} else if (source == btnFigures) {
 			loadFigureItems();
+		} else if (source == btnFestivals) {
+			loadFestivalItems();
 		}
 
 		if (headerPaths.containsKey(source)) {
@@ -196,7 +221,7 @@ public class ControllerApp {
 
 		try {
 			for (King king : kings) {
-				HBox kingItem = loadKingItem(king);
+				HBox kingItem = loadItem(king);
 				pnItems.getChildren().add(kingItem);
 			}
 		} catch (IOException e) {
@@ -204,8 +229,7 @@ public class ControllerApp {
 		}
 	}
 
-	private HBox loadKingItem(King king) throws IOException {
-		System.out.println(king.name);
+	private HBox loadItem(King king) throws IOException {
 		ControllerKing controller = new ControllerKing(king); // Create an instance of Controller
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_KING_PATH));
@@ -215,30 +239,29 @@ public class ControllerApp {
 		return kingItem;
 	}
 
-//
-//    public void loadFestivalItems() {
-//        pnItems.getChildren().clear();
-//
-//        try {
-//            for (Festival festival : festivals) {
-//                HBox festivalItem = loadFestivalItem(festival);
-//                pnItems.getChildren().add(festivalItem);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private HBox loadFestivalItem(Festival festival) throws IOException {
-//        ControllerFestival controller = new ControllerFestival(festival); // Create an instance of Controller
-//
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FESTIVAL_PATH));
-//        loader.setController(controller); // Set the controller instance
-//        HBox festivalItem = loader.load();
-//        controller.setFestivalDetails();
-//        return festivalItem;
-//    }
-//
+	public void loadFestivalItems() {
+		pnItems.getChildren().clear();
+
+		try {
+			for (Festival festival : festivals) {
+				HBox festivalItem = loadItem(festival);
+				pnItems.getChildren().add(festivalItem);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private HBox loadItem(Festival festival) throws IOException {
+		ControllerFestival controller = new ControllerFestival(festival); // Create an instance of Controller
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FESTIVAL_PATH));
+		loader.setController(controller); // Set the controller instance
+		HBox festivalItem = loader.load();
+		controller.setFestivalDetails();
+		return festivalItem;
+	}
+
 	public void loadFigureItems() {
 		pnItems.getChildren().clear();
 
@@ -253,7 +276,6 @@ public class ControllerApp {
 	}
 
 	private HBox loadFigureItem(Figure figure) throws IOException {
-//    	System.out.println(figure.name);
 		ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FIGURE_PATH));
