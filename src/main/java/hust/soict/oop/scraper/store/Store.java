@@ -22,28 +22,74 @@ public class Store {
     private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH, Location[].class);
     private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH, Festival[].class);
     
-	public List<Event> getEvents() {
-		return eventListController.getItems();
-	}
+    private List<Event> events = new ArrayList<>();
+    private List<Figure> figures = new ArrayList<>();
+    private List<King> kings = new ArrayList<>();
+    private List<Festival> festivals = new ArrayList<>();
+        Figure[].class);
 	
+	public Store() {
+		events = eventListController.getItems();
+		figures = figureListController.getItems();
+		kings = kingListController.getItems();
+		festivals = festivalListController.getItems();
+	}
+
+  public List<Event> getEvents() {
+		return events;
+	}
+
 	public List<Figure> getFigures() {
-		return figureListController.getItems();
+		return figures;
 	}
-	
+
 	public List<King> getKings() {
-		return kingListController.getItems();
+		return kings;
 	}
 
 	public List<Festival> getFestivals() {
-		return festivalListController.getItems();
+		return festivals;
+	}
+
+	public List<Event> searchEvent(String query) {
+		List<Event> result = new ArrayList<>();
+		for (Event event : events) {
+			if (event.getEvent() != null
+					&& event.getEvent().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+				result.add(event);
+			}
+		}
+		return result;
+	}
+
+	public List<King> searchKing(String query) {
+		List<King> result = new ArrayList<>();
+		for (King king : kings) {
+			if (king.getName() != null && king.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+				result.add(king);
+			}
+		}
+		return result;
 	}
 	
-	public List<Location> getLocation() {
-		return attractionListController.getItems();
+	public List<Figure> searchFigure(String query) {
+		List<Figure> result = new ArrayList<>();
+		for (Figure figure : figures) {
+			if (figure.getName() != null && figure.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+				result.add(figure);
+			}
+		}
+		return result;
 	}
 	
-	public List<Dynasty> getDynasties() {
-		return dynastyListController.getItems();
+	public List<Festival> searchFestival(String query) {
+		List<Festival> result = new ArrayList<>();
+		for (Festival festival : festivals) {
+			if (festival.getName() != null && festival.getName().toLowerCase().trim().contains(query.toLowerCase().trim())) {
+				result.add(festival);
+			}
+		}
+		return result;
 	}
 
 }

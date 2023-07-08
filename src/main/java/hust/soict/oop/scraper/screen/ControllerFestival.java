@@ -17,38 +17,31 @@ import javafx.stage.Stage;
 public class ControllerFestival {
 	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
 	
-	private Festival fes;
+	private Festival festival;
 	
     @FXML
     private HBox itemC;
-
+    
     @FXML
-    private Label fesLabel;
-
+    private Label nameLabel;
+    
     @FXML
-    private Label timeLabel;
-
+    private Label dateLabel;
+    
     @FXML
     private Label locationLabel;
-
+    
     @FXML
     private Button detailButton;
     
-    public ControllerFestival(Festival fes) {
-    	this.fes = fes;
+    public ControllerFestival(Festival festival) {
+    	this.festival = festival;
     }
 
     public void setFestivalDetails() {
-        // Set the event details in the UI elements
-    	fesLabel.setText(fes.getName());
-    	timeLabel.setText(fes.getDate());
-    	locationLabel.setText(fes.getLocation());
-
-
-        // Set button action or any additional event handling
-//        detailButton.setOnAction(event -> {
-//            // Handle the button click event for the event details
-//        });
+    	nameLabel.setText(festival.getName());
+    	dateLabel.setText(festival.getDate());
+    	locationLabel.setText(festival.getLocation());
     }
     
     @FXML
@@ -66,7 +59,7 @@ public class ControllerFestival {
             
             // Set the event details in the Event.fxml controller
             ControllerModal modalController = loader.getController();
-            modalController.setModalDetails(this.fes);
+            modalController.setModalDetails(this.festival);
 
             // Show the modal and wait for it to be closed
             modalStage.showAndWait();
