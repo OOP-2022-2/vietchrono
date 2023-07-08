@@ -78,16 +78,6 @@ public class ControllerApp {
 		});
 	}
 
-	public ControllerApp() {
-		// init events
-		events = store.getEvents();
-		kings = store.getKings();
-		figures = store.getFigures();
-		festivals = store.getFestivals();
-		attractions = store.getLocations();
-		dynasties = store.getDynasties();
-	}
-
 	public void search() {
 		if (titleLabel.getText().equals("Events")) {
 			events = store.searchEvent(searchBar.getText());
@@ -103,10 +93,10 @@ public class ControllerApp {
 			loadFigureItems();
 		} else if (titleLabel.getText().equals("Tourist Attractions")) {
 			attractions = store.searchLocation(searchBar.getText());
-			loadFigureItems();
+			loadAttractionItems();
 		} else if (titleLabel.getText().equals("Dynasties")) {
 			dynasties = store.searchDynasty(searchBar.getText());
-			loadFigureItems();
+			loadDynastyItems();
 		}
 	}
 
@@ -141,16 +131,22 @@ public class ControllerApp {
 		if (source == btnOverview) {
 
 		} else if (source == btnEvents) {
+			events = store.getEvents();
 			loadEventItems();
 		} else if (source == btnKings) {
+			kings = store.getKings();
 			loadKingItems();
 		} else if (source == btnFigures) {
+			figures = store.getFigures();
 			loadFigureItems();
 		} else if (source == btnFestivals) {
+			festivals = store.getFestivals();
 			loadFestivalItems();
 		} else if (source == btnAttractions) {
+			attractions = store.getLocations();
 			loadAttractionItems();
 		} else if (source == btnDynasties) {
+			dynasties = store.getDynasties();
 			loadDynastyItems();
 		}
 
