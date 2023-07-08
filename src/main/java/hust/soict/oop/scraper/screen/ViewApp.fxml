@@ -202,7 +202,12 @@
                   
                   <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="pnEvents" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox fx:id="pnKings" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

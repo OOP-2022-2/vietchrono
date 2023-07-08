@@ -41,7 +41,10 @@ public class ControllerApp {
 	private HBox header;
 
 	@FXML
-	private VBox pnItems = null;
+	private VBox pnEvents = null;
+	
+	@FXML
+	private VBox pnKings = null;
 
 	@FXML
 	private Button btnOverview;
@@ -67,6 +70,8 @@ public class ControllerApp {
 	@FXML
 	public void initialize() {
 		setHeaderSource(VIEW_OVERVIEW_HEADER_PATH);
+		loadEventItems();
+		loadKingItems();
 	}
 
 	public ControllerApp() {
@@ -108,13 +113,18 @@ public class ControllerApp {
 			
 		} 
 		else if (source == btnEvents) {
-			loadEventItems();
+			pnKings.setManaged(false);
+			pnKings.setVisible(false);
+			pnEvents.setManaged(true);
+			pnEvents.setVisible(true);
 		}
 		else if (source == btnKings) {
-			loadKingItems();
+			pnKings.setManaged(true);
+			pnKings.setVisible(true);
+			pnEvents.setManaged(false);
+			pnEvents.setVisible(false);
 		}
 		else if (source == btnFigures) {
-			loadFigureItems();
 		}
 
 		if (headerPaths.containsKey(source)) {
@@ -123,12 +133,12 @@ public class ControllerApp {
 	}
 
 	public void loadEventItems() {
-		pnItems.getChildren().clear();
+		pnEvents.getChildren().clear();
 
 		try {
 			for (Event event : events) {
 				HBox eventItem = loadEventItem(event);
-				pnItems.getChildren().add(eventItem);
+				pnEvents.getChildren().add(eventItem);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -192,12 +202,12 @@ public class ControllerApp {
 //    }
 //
 	public void loadKingItems() {
-		pnItems.getChildren().clear();
+		pnKings.getChildren().clear();
 
 		try {
 			for (King king : kings) {
 				HBox kingItem = loadKingItem(king);
-				pnItems.getChildren().add(kingItem);
+				pnKings.getChildren().add(kingItem);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -239,28 +249,28 @@ public class ControllerApp {
 //        return festivalItem;
 //    }
 //
-	public void loadFigureItems() {
-		pnItems.getChildren().clear();
-
-		try {
-			for (Figure figure : figures) {
-				HBox figureItem = loadFigureItem(figure);
-				pnItems.getChildren().add(figureItem);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private HBox loadFigureItem(Figure figure) throws IOException {
-//    	System.out.println(figure.name);
-		ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FIGURE_PATH));
-		loader.setController(controller); // Set the controller instance
-		HBox figureItem = loader.load();
-		controller.setFigureDetails();
-		return figureItem;
-	}
+//	public void loadFigureItems() {
+//		pnItems.getChildren().clear();
+//
+//		try {
+//			for (Figure figure : figures) {
+//				HBox figureItem = loadFigureItem(figure);
+//				pnItems.getChildren().add(figureItem);
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	private HBox loadFigureItem(Figure figure) throws IOException {
+////    	System.out.println(figure.name);
+//		ControllerFigure controller = new ControllerFigure(figure); // Create an instance of Controller
+//
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource(VIEW_FIGURE_PATH));
+//		loader.setController(controller); // Set the controller instance
+//		HBox figureItem = loader.load();
+//		controller.setFigureDetails();
+//		return figureItem;
+//	}
 
 }
