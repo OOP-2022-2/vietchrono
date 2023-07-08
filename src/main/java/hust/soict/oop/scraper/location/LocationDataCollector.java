@@ -56,7 +56,7 @@ public class LocationDataCollector {
 
             // Tạo đối tượng JSON từ danh sách data
             JSONArray jsonArray = new JSONArray();
-            JSONObject jsonObject = new JSONObject();
+            
             for (String[] rowData : data) {
 //                JSONObject jsonObject = new JSONObject();
 //                jsonObject.put("Di tích", rowData[0]);
@@ -65,7 +65,7 @@ public class LocationDataCollector {
 //                jsonObject.put("năm công nhận", rowData[3]);
 //                jsonObject.put("ghi chú", rowData[4]);
 //                jsonArray.put(jsonObject);
-                
+            	JSONObject jsonObject = new JSONObject();
                 lo.setName(rowData[0]);
                 lo.setLocation(rowData[1]);
                 lo.setType(rowData[2]);
@@ -77,10 +77,10 @@ public class LocationDataCollector {
                 jsonObject.put("name", lo.getName());
                 jsonObject.put("type", lo.getType());
                 jsonArray.put(jsonObject);
-                
+                System.out.println(jsonObject);
                 
             }
-            System.out.println(jsonObject);
+            
             // Ghi dữ liệu vào file JSON
             String json = jsonArray.toString(4);
             String filePath = "src/main/java/hust/soict/oop/scraper/location/data/locations.json";
