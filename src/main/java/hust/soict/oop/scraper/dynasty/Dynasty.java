@@ -2,106 +2,65 @@ package hust.soict.oop.scraper.dynasty;
 import java.util.*;
 
 public class Dynasty {
-    private String name;
-    private String date;
-    private String location;
-    private String description;
-    private List<String> historicalFigures;
-    private String significance;
-    private String cause;
-    private String outcome;
-    private List<String> relatedEvents;
-    private List<String> sources;
+    private String xungDot;
+    private String thoiKy;
+    private String doiPhuong;
+    private String ketQua;
+
 
     // Constructor
-    public Dynasty(String name, String date, String location, String description) {
-        this.name = name;
-        this.date = date;
-        this.location = location;
-        this.description = description;
-        this.historicalFigures = new ArrayList<String>();
-        this.relatedEvents = new ArrayList<String>();
-        this.sources = new ArrayList<String>();
+    public Dynasty(String xungDot, String thoiKy, String doiPhuong, String ketQua) {
+    	super();
+    	this.xungDot = xungDot;
+        this.thoiKy = thoiKy;
+        this.doiPhuong = doiPhuong;
+        this.ketQua = ketQua;
     }
+    public Dynasty() {
+    	
+    }
+
+
+	public String getXungDot() {
+		return xungDot;
+	}
+
+
+	public void setXungDot(String xungDot) {
+		this.xungDot = xungDot;
+	}
+
+
+	public String getThoiKy() {
+		return thoiKy;
+	}
+
+
+	public void setThoiKy(String thoiKy) {
+		this.thoiKy = thoiKy;
+	}
+
+
+	public String getDoiPhuong() {
+		return doiPhuong;
+	}
+
+
+	public void setDoiPhuong(String doiPhuong) {
+		this.doiPhuong = doiPhuong;
+	}
+
+
+	public String getKetQua() {
+		return ketQua;
+	}
+
+
+	public void setKetQua(String ketQua) {
+		this.ketQua = ketQua;
+	}
 
     // Getters and Setters for the attributes
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<String> getHistoricalFigures() {
-        return historicalFigures;
-    }
-
-    public void addHistoricalFigure(String historicalFigure) {
-        this.historicalFigures.add(historicalFigure);
-    }
-
-    public String getSignificance() {
-        return significance;
-    }
-
-    public void setSignificance(String significance) {
-        this.significance = significance;
-    }
-
-    public String getCause() {
-        return cause;
-    }
-
-    public void setCause(String cause) {
-        this.cause = cause;
-    }
-
-    public String getOutcome() {
-        return outcome;
-    }
-
-    public void setOutcome(String outcome) {
-        this.outcome = outcome;
-    }
-
-    public List<String> getRelatedEvents() {
-        return relatedEvents;
-    }
-
-    public void addRelatedEvent(String relatedEvent) {
-        this.relatedEvents.add(relatedEvent);
-    }
-
-    public List<String> getSources() {
-        return sources;
-    }
-
-    public void addSource(String source) {
-        this.sources.add(source);
-    }
 }

@@ -2,7 +2,7 @@ package hust.soict.oop.scraper.screen;
 
 import java.io.IOException;
 
-import hust.soict.oop.scraper.event.Event;
+import hust.soict.oop.scraper.festival.Festival;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,36 +17,33 @@ import javafx.stage.Stage;
 public class ControllerFestival {
 	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
 	
-	private Event event;
+	private Festival fes;
 	
     @FXML
     private HBox itemC;
 
     @FXML
-    private Label eventLabel;
+    private Label fesLabel;
 
     @FXML
-    private Label dateLabel;
+    private Label timeLabel;
 
     @FXML
-    private Label ageLabel;
-
-    @FXML
-    private Label dynastyLabel;
+    private Label locationLabel;
 
     @FXML
     private Button detailButton;
     
-    public ControllerFestival(Event event) {
-    	this.event = event;
+    public ControllerFestival(Festival fes) {
+    	this.fes = fes;
     }
 
-    public void setEventDetails() {
+    public void setFestivalDetails() {
         // Set the event details in the UI elements
-        eventLabel.setText(event.getEvent());
-        dateLabel.setText(event.printDate());
-        ageLabel.setText(event.getAge());
-        dynastyLabel.setText(event.getDynasty());
+    	fesLabel.setText(fes.getName());
+    	timeLabel.setText(fes.getDate());
+    	locationLabel.setText(fes.getLocation());
+
 
         // Set button action or any additional event handling
 //        detailButton.setOnAction(event -> {
@@ -69,7 +66,7 @@ public class ControllerFestival {
             
             // Set the event details in the Event.fxml controller
             ControllerModal modalController = loader.getController();
-            modalController.setModalDetails(this.event);
+            modalController.setModalDetails(this.fes);
 
             // Show the modal and wait for it to be closed
             modalStage.showAndWait();

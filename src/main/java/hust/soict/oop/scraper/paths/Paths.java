@@ -20,7 +20,7 @@ public class Paths {
 
 
     public static final String EVENTS_JSON_PATH = "src/main/java/hust/soict/oop/scraper/event/data/events.json";
-    public static final String ATTRACTIONS_JSON_PATH = "src/main/java/hust/soict/oop/scraper/location/data/attractions.json";
+    public static final String ATTRACTIONS_JSON_PATH = "src/main/java/hust/soict/oop/scraper/location/data/locations.json";
     public static final String KINGS_JSON_PATH = "src/main/java/hust/soict/oop/scraper/figure/data/king.json";
     public static final String FIGURES_JSON_PATH = "src/main/java/hust/soict/oop/scraper/figure/data/figure.json";
     public static final String DYNASTIES_JSON_PATH = "src/main/java/hust/soict/oop/scraper/dynasty/data/dynasties.json";
