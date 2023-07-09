@@ -29,6 +29,8 @@ public class ControllerModal {
 				: new Label("Dynasty: " + event.getDynasty());
 		Label descriptionLabel = event.getDescription() == null || event.getDescription().equals("") ? null
 				: new Label("Description: " + event.getDescription());
+		Label relatedKings = new Label("Related Kings:");
+		Label relatedFigures = new Label("Related Figures:");
 
 		eventLabel.setStyle("-fx-text-fill: white;");
 		dateLabel.setStyle("-fx-text-fill: white;");
@@ -38,6 +40,8 @@ public class ControllerModal {
 			dynastyLabel.setStyle("-fx-text-fill: white;");
 		if (descriptionLabel != null)
 			descriptionLabel.setStyle("-fx-text-fill: white;");
+		relatedKings.setStyle("-fx-text-fill: white;");
+		relatedFigures.setStyle("-fx-text-fill: white;");
 
 		// Set wrap text for all labels
 		eventLabel.setWrapText(true);
@@ -48,6 +52,8 @@ public class ControllerModal {
 			dynastyLabel.setWrapText(true);
 		if (descriptionLabel != null)
 			descriptionLabel.setWrapText(true);
+		relatedKings.setWrapText(true);
+		relatedFigures.setWrapText(true);
 
 		// Create a VBox to hold all the non-null labels
 		VBox vbox = new VBox();
@@ -58,6 +64,26 @@ public class ControllerModal {
 			vbox.getChildren().add(dynastyLabel);
 		if (descriptionLabel != null)
 			vbox.getChildren().add(descriptionLabel);
+		if (event.getRelatedFigures().size() != 0) {
+			vbox.getChildren().add(relatedFigures);
+			for (Figure figure : event.getRelatedFigures()) {
+				Label figureLabel = new Label("\t- " + figure.getName());
+				figureLabel.setStyle("-fx-text-fill: white;");
+				figureLabel.setWrapText(true);
+				vbox.getChildren().add(figureLabel);
+				VBox.setMargin(figureLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		if (event.getRelatedKings().size() != 0) {
+			vbox.getChildren().add(relatedKings);
+			for (King king : event.getRelatedKings()) {
+				Label kingLabel = new Label("\t- " + king.getName());
+				kingLabel.setStyle("-fx-text-fill: white;");
+				kingLabel.setWrapText(true);
+				vbox.getChildren().add(kingLabel);
+				VBox.setMargin(kingLabel, new Insets(0, 10, 0, 20));
+			}
+		}
 
 		// Set the spacing between labels
 		vbox.setSpacing(10);
@@ -70,7 +96,7 @@ public class ControllerModal {
 		if (dynastyLabel != null)
 			VBox.setMargin(dynastyLabel, new Insets(0, 10, 0, 20));
 		if (descriptionLabel != null)
-			VBox.setMargin(descriptionLabel, new Insets(0, 10, 20, 20));
+			VBox.setMargin(descriptionLabel, new Insets(0, 10, 0, 20));
 
 		// Clear existing children from contentBox
 		contentBox.getChildren().clear();
@@ -89,28 +115,61 @@ public class ControllerModal {
 		Label doiPhuongLabel = new Label("Đối Phương: " + dynasty.getDoiPhuong());
 		Label ketQuaLabel = new Label("Kết Quả: " + dynasty.getKetQua());
 		Label relatedEvents = new Label("Sự kiện liên quan:");
+		Label relatedKings = new Label("Các vị vua liên quan:");
+		Label relatedFigures = new Label("Các nhân vật liên quan:");
 
 		xungDotLabel.setStyle("-fx-text-fill: white;");
 		thoiKyLabel.setStyle("-fx-text-fill: white;");
 		doiPhuongLabel.setStyle("-fx-text-fill: white;");
 		ketQuaLabel.setStyle("-fx-text-fill: white;");
 		relatedEvents.setStyle("-fx-text-fill: white;");
+		relatedKings.setStyle("-fx-text-fill: white;");
+		relatedFigures.setStyle("-fx-text-fill: white;");
 
 		xungDotLabel.setWrapText(true);
 		thoiKyLabel.setWrapText(true);
 		doiPhuongLabel.setWrapText(true);
 		ketQuaLabel.setWrapText(true);
 		relatedEvents.setWrapText(true);
+		relatedKings.setWrapText(true);
+		relatedFigures.setWrapText(true);
 
 		VBox vbox = new VBox();
-		vbox.getChildren().addAll(xungDotLabel, thoiKyLabel, doiPhuongLabel, ketQuaLabel, relatedEvents);
+		vbox.getChildren().addAll(xungDotLabel, thoiKyLabel, doiPhuongLabel, ketQuaLabel);
+		
+		if (dynasty.getRelatedEvents().size() != 0) {
+			vbox.getChildren().add(relatedEvents);
+			for (Event event : dynasty.getRelatedEvents()) {
+				Label eventLabel = new Label("\t- " + event.getEvent());
+				eventLabel.setStyle("-fx-text-fill: white;");
+				eventLabel.setWrapText(true);
+				vbox.getChildren().add(eventLabel);
+				VBox.setMargin(eventLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (dynasty.getRelatedKings().size() != 0) {
+			vbox.getChildren().add(relatedKings);
 
-		for (Event event : dynasty.getRelatedEvents()) {
-			Label eventLabel = new Label("\t- " + event.getEvent());
-			eventLabel.setStyle("-fx-text-fill: white;");
-			eventLabel.setWrapText(true);
-			vbox.getChildren().add(eventLabel);
-			VBox.setMargin(eventLabel, new Insets(0, 10, 0, 20));
+			for (King king : dynasty.getRelatedKings()) {
+				Label kingLabel = new Label("\t- " + king.getName());
+				kingLabel.setStyle("-fx-text-fill: white;");
+				kingLabel.setWrapText(true);
+				vbox.getChildren().add(kingLabel);
+				VBox.setMargin(kingLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (dynasty.getRelatedFigures().size() != 0) {
+			vbox.getChildren().add(relatedFigures);
+
+			for (Figure figure : dynasty.getRelatedFigures()) {
+				Label figureLabel = new Label("\t- " + figure.getName());
+				figureLabel.setStyle("-fx-text-fill: white;");
+				figureLabel.setWrapText(true);
+				vbox.getChildren().add(figureLabel);
+				VBox.setMargin(figureLabel, new Insets(0, 10, 0, 20));
+			}
 		}
 
 		vbox.setSpacing(10);
@@ -121,6 +180,8 @@ public class ControllerModal {
 		VBox.setMargin(doiPhuongLabel, new Insets(0, 10, 0, 20));
 		VBox.setMargin(ketQuaLabel, new Insets(0, 10, 0, 20));
 		VBox.setMargin(relatedEvents, new Insets(0, 10, 0, 20));
+		VBox.setMargin(relatedKings, new Insets(0, 10, 0, 20));
+		VBox.setMargin(relatedFigures, new Insets(0, 10, 0, 20));
 
 		// Clear existing children from contentBox
 		contentBox.getChildren().clear();

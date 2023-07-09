@@ -45,12 +45,14 @@ public class Linker {
 		locations = attractionListController.getItems();
 		dynasties = dynastyListController.getItems();
 
-		setDynastyToEvent();
-		setDynastyToKing();
-		setDynastyToFigure();
+		setEventToDynasty();
+		setKingToDynasty();
+		setFigureToDynasty();
+		setFigureToEvent();
+		setKingToEvent();
 	}
 
-	public void setDynastyToEvent() {
+	public void setEventToDynasty() {
 		for (int i = 0; i < dynasties.size(); i++) {
 			List<Event> list = new ArrayList<>();
 			for (Event event : events) {
@@ -63,7 +65,7 @@ public class Linker {
 		}
 	}
 
-	public void setDynastyToKing() {
+	public void setKingToDynasty() {
 		for (int i = 0; i < dynasties.size(); i++) {
 			List<King> list = new ArrayList<>();
 			for (King king : kings) {
@@ -76,7 +78,7 @@ public class Linker {
 		}
 	}
 
-	public void setDynastyToFigure() {
+	public void setFigureToDynasty() {
 		for (int i = 0; i < dynasties.size(); i++) {
 			List<Figure> list = new ArrayList<>();
 			for (Figure figure : figures) {
@@ -86,6 +88,32 @@ public class Linker {
 				}
 			}
 			dynasties.get(i).setRelatedFigures(list);
+		}
+	}
+	
+	public void setFigureToEvent() {
+		for (int i = 0; i < events.size(); i++) {
+			List<Figure> list = new ArrayList<>();
+			for (Figure figure : figures) {
+				if (events.get(i).getDescription() != null && (events.get(i).getEvent().toLowerCase().contains(figure.getName().toLowerCase())
+						|| events.get(i).getDescription().toLowerCase().contains(figure.getName().toLowerCase()))) {
+					list.add(figure);
+				}
+			}
+			events.get(i).setRelatedFigures(list);
+		}
+	}
+	
+	public void setKingToEvent() {
+		for (int i = 0; i < events.size(); i++) {
+			List<King> list = new ArrayList<>();
+			for (King king : kings) {
+				if (king.getName() != null && (events.get(i).getEvent().toLowerCase().contains(king.getName().toLowerCase())
+						|| events.get(i).getDescription() != null && events.get(i).getDescription().toLowerCase().contains(king.getName().toLowerCase()))) {
+					list.add(king);
+				}
+			}
+			events.get(i).setRelatedKings(list);
 		}
 	}
 

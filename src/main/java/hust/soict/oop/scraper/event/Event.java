@@ -1,5 +1,8 @@
 package hust.soict.oop.scraper.event;
 
+import hust.soict.oop.scraper.figure.*;
+import java.util.*;
+
 public class Event {
 
 	private String event;
@@ -10,6 +13,8 @@ public class Event {
 	private String description;
 	private Image image;
 	private String source;
+	private List<Figure> relatedFigures = new ArrayList<>();
+	private List<King> relatedKings = new ArrayList<>();
 
 	public Event() {
 		super();
@@ -107,6 +112,22 @@ public class Event {
 	public String toString() {
 		return getTo() == "" ? age + "   " + dynasty + "   " + getEvent() + "   " + getFrom()
 				: age + "   " + dynasty + "   " + getEvent() + "   " + getFrom() + " - " + getTo();
+	}
+
+	public List<Figure> getRelatedFigures() {
+		return relatedFigures;
+	}
+
+	public void setRelatedFigures(List<Figure> relatedFigures) {
+		this.relatedFigures = relatedFigures;
+	}
+
+	public List<King> getRelatedKings() {
+		return relatedKings;
+	}
+
+	public void setRelatedKings(List<King> relatedKings) {
+		this.relatedKings = relatedKings;
 	}
 
 }
