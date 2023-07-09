@@ -74,7 +74,9 @@ public class ControllerApp {
 
 	@FXML
 	public void initialize() {
-		setHeaderSource(VIEW_OVERVIEW_HEADER_PATH);
+		setHeaderSource(VIEW_DYNASTY_HEADER_PATH);
+		dynasties = store.getDynasties();
+		loadDynastyItems();
 		searchBar.setOnKeyPressed(e -> {
 			if (e.getCode() == KeyCode.ENTER) {
 				search();

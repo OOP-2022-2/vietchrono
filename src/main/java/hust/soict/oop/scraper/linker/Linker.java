@@ -60,7 +60,6 @@ public class Linker {
 		setEventToFigure();
 		setLocationToFigure();
 		setDynastyToFigure();
-		setFigureToFigure();
 	}
 	
 	public void setFigureToKing() {
