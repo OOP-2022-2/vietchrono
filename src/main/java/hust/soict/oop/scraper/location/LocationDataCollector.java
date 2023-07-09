@@ -15,49 +15,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDataCollector {
-	
-    public static void main(String[] args) {
-        try {
-        	Location lo = new Location();
-            // Kết nối và tải trang web
-            Document doc = Jsoup.connect("https://vi.wikipedia.org/wiki/Danh_s%C3%A1ch_Di_t%C3%ADch_qu%E1%BB%91c_gia_Vi%E1%BB%87t_Nam").get();
 
-            // Tìm tất cả các bảng trong trang web
-            Elements tables = doc.select("table.wikitable");
+	public static void main(String[] args) {
+		try {
+			Location lo = new Location();
+			// Kết nối và tải trang web
+			Document doc = Jsoup.connect(
+					"https://vi.wikipedia.org/wiki/Danh_s%C3%A1ch_Di_t%C3%ADch_qu%E1%BB%91c_gia_Vi%E1%BB%87t_Nam")
+					.get();
 
-            // Tạo danh sách để lưu trữ dữ liệu từ các bảng
-            List<String[]> data = new ArrayList<>();
+			// Tìm tất cả các bảng trong trang web
+			Elements tables = doc.select("table.wikitable");
 
-            // Lấy dữ liệu từ tất cả các bảng
-            for (Element table : tables) {
-                // Lấy danh sách các hàng trong bảng
-                Elements rows = table.select("tr");
+			// Tạo danh sách để lưu trữ dữ liệu từ các bảng
+			List<String[]> data = new ArrayList<>();
 
-                // Lấy các dòng dữ liệu từ bảng
-                for (int i = 1; i < rows.size(); i++) {
-                    Element row = rows.get(i);
-                    Elements columns = row.select("td");
+			// Lấy dữ liệu từ tất cả các bảng
+			for (Element table : tables) {
+				// Lấy danh sách các hàng trong bảng
+				Elements rows = table.select("tr");
 
-                    // Kiểm tra số lượng cột và bỏ qua hàng nếu không đủ
-                    if (columns.size() >= 5) {
-                        String[] rowData = new String[5];
+				// Lấy các dòng dữ liệu từ bảng
+				for (int i = 1; i < rows.size(); i++) {
+					Element row = rows.get(i);
+					Elements columns = row.select("td");
 
-                        // Lấy dữ liệu từ các cột
-                        rowData[0] = columns.get(0).text();
-                        rowData[1] = columns.get(1).text();
-                        rowData[2] = columns.get(2).text();
-                        rowData[3] = columns.get(3).text();
-                        rowData[4] = columns.get(4).text();
+					// Kiểm tra số lượng cột và bỏ qua hàng nếu không đủ
+					if (columns.size() >= 5) {
+						String[] rowData = new String[5];
 
-                        data.add(rowData);
-                    }
-                }
-            }
+						// Lấy dữ liệu từ các cột
+						rowData[0] = columns.get(0).text();
+						rowData[1] = columns.get(1).text();
+						rowData[2] = columns.get(2).text();
+						rowData[3] = columns.get(3).text();
+						rowData[4] = columns.get(4).text();
 
-            // Tạo đối tượng JSON từ danh sách data
-            JSONArray jsonArray = new JSONArray();
-            
-            for (String[] rowData : data) {
+						data.add(rowData);
+					}
+				}
+			}
+
+			// Tạo đối tượng JSON từ danh sách data
+			JSONArray jsonArray = new JSONArray();
+
+			for (String[] rowData : data) {
 //                JSONObject jsonObject = new JSONObject();
 //                jsonObject.put("Di tích", rowData[0]);
 //                jsonObject.put("vị trí", rowData[1]);
@@ -65,30 +67,29 @@ public class LocationDataCollector {
 //                jsonObject.put("năm công nhận", rowData[3]);
 //                jsonObject.put("ghi chú", rowData[4]);
 //                jsonArray.put(jsonObject);
-            	JSONObject jsonObject = new JSONObject();
-                lo.setName(rowData[0]);
-                lo.setLocation(rowData[1]);
-                lo.setType(rowData[2]);
-                lo.setDate(rowData[3]);
-                
-                
-                jsonObject.put("date", lo.getDate());
-                jsonObject.put("location", lo.getLocation());
-                jsonObject.put("name", lo.getName());
-                jsonObject.put("type", lo.getType());
-                jsonArray.put(jsonObject);
-                System.out.println(jsonObject);
-                
-            }
-            
-            // Ghi dữ liệu vào file JSON
-            String json = jsonArray.toString(4);
-            String filePath = "src/main/java/hust/soict/oop/scraper/location/data/locations.json";
-            Files.write(Paths.get(filePath), json.getBytes());
+				JSONObject jsonObject = new JSONObject();
+				lo.setName(rowData[0]);
+				lo.setLocation(rowData[1]);
+				lo.setType(rowData[2]);
+				lo.setDate(rowData[3]);
 
-            System.out.println("Dữ liệu đã được ghi vào file locations.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+				jsonObject.put("date", lo.getDate());
+				jsonObject.put("location", lo.getLocation());
+				jsonObject.put("name", lo.getName());
+				jsonObject.put("type", lo.getType());
+				jsonArray.put(jsonObject);
+				System.out.println(jsonObject);
+
+			}
+
+			// Ghi dữ liệu vào file JSON
+			String json = jsonArray.toString(4);
+			String filePath = "src/main/java/hust/soict/oop/scraper/location/data/locations.json";
+			Files.write(Paths.get(filePath), json.getBytes());
+
+			System.out.println("Dữ liệu đã được ghi vào file locations.json");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

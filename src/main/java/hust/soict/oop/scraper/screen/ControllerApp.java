@@ -20,6 +20,7 @@ import java.util.*;
 import hust.soict.oop.scraper.event.Event;
 import hust.soict.oop.scraper.dynasty.Dynasty;
 import hust.soict.oop.scraper.figure.King;
+import hust.soict.oop.scraper.linker.Linker;
 import hust.soict.oop.scraper.figure.Figure;
 import hust.soict.oop.scraper.festival.Festival;
 import hust.soict.oop.scraper.location.Location;
@@ -67,6 +68,9 @@ public class ControllerApp {
 
 	@FXML
 	private Button btnDynasties;
+
+	public ControllerApp() {
+	}
 
 	@FXML
 	public void initialize() {

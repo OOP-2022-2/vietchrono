@@ -87,20 +87,31 @@ public class ControllerModal {
 		Label xungDotLabel = new Label("Xung đột: " + dynasty.getXungDot());
 		Label thoiKyLabel = new Label("Thời kỳ: " + dynasty.getThoiKy());
 		Label doiPhuongLabel = new Label("Đối Phương: " + dynasty.getDoiPhuong());
-		Label ketQuaLabel = new Label("Kết Quả" + dynasty.getKetQua());
+		Label ketQuaLabel = new Label("Kết Quả: " + dynasty.getKetQua());
+		Label relatedEvents = new Label("Sự kiện liên quan:");
 
 		xungDotLabel.setStyle("-fx-text-fill: white;");
 		thoiKyLabel.setStyle("-fx-text-fill: white;");
 		doiPhuongLabel.setStyle("-fx-text-fill: white;");
 		ketQuaLabel.setStyle("-fx-text-fill: white;");
+		relatedEvents.setStyle("-fx-text-fill: white;");
 
 		xungDotLabel.setWrapText(true);
 		thoiKyLabel.setWrapText(true);
 		doiPhuongLabel.setWrapText(true);
 		ketQuaLabel.setWrapText(true);
+		relatedEvents.setWrapText(true);
 
 		VBox vbox = new VBox();
-		vbox.getChildren().addAll(xungDotLabel, thoiKyLabel, doiPhuongLabel, ketQuaLabel);
+		vbox.getChildren().addAll(xungDotLabel, thoiKyLabel, doiPhuongLabel, ketQuaLabel, relatedEvents);
+
+		for (Event event : dynasty.getRelatedEvents()) {
+			Label eventLabel = new Label("\t- " + event.getEvent());
+			eventLabel.setStyle("-fx-text-fill: white;");
+			eventLabel.setWrapText(true);
+			vbox.getChildren().add(eventLabel);
+			VBox.setMargin(eventLabel, new Insets(0, 10, 0, 20));
+		}
 
 		vbox.setSpacing(10);
 
@@ -109,6 +120,17 @@ public class ControllerModal {
 		VBox.setMargin(thoiKyLabel, new Insets(0, 10, 0, 20));
 		VBox.setMargin(doiPhuongLabel, new Insets(0, 10, 0, 20));
 		VBox.setMargin(ketQuaLabel, new Insets(0, 10, 0, 20));
+		VBox.setMargin(relatedEvents, new Insets(0, 10, 0, 20));
+
+		// Clear existing children from contentBox
+		contentBox.getChildren().clear();
+
+		// Add the VBox to the contentBox
+		contentBox.getChildren().add(vbox);
+
+		// Bind the contentBox width to the modalScrollPane width
+		contentBox.prefWidthProperty().bind(modalScrollPane.widthProperty());
+		contentBox.minHeightProperty().bind(modalScrollPane.heightProperty());
 	}
 
 	public void setModalDetails(King king) {

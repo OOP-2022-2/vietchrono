@@ -1,7 +1,5 @@
 package hust.soict.oop.scraper.store;
 
-import static hust.soict.oop.scraper.paths.Paths.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,22 +8,11 @@ import hust.soict.oop.scraper.event.Event;
 import hust.soict.oop.scraper.festival.Festival;
 import hust.soict.oop.scraper.figure.Figure;
 import hust.soict.oop.scraper.figure.King;
+import hust.soict.oop.scraper.linker.Linker;
 import hust.soict.oop.scraper.location.Location;
-import hust.soict.oop.scraper.screen.ControllerItemList;
 
 public class Store {
-
-	private ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
-	private ControllerItemList<King> kingListController = new ControllerItemList<>(KINGS_JSON_PATH, King[].class);
-	private ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH,
-			Figure[].class);
-	private ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH,
-			Dynasty[].class);
-	private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH,
-			Location[].class);
-	private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH,
-			Festival[].class);
-
+	private Linker linker;
 	private List<Event> events = new ArrayList<>();
 	private List<Figure> figures = new ArrayList<>();
 	private List<King> kings = new ArrayList<>();
@@ -34,12 +21,13 @@ public class Store {
 	private List<Dynasty> dynasties = new ArrayList<>();
 
 	public Store() {
-		events = eventListController.getItems();
-		figures = figureListController.getItems();
-		kings = kingListController.getItems();
-		festivals = festivalListController.getItems();
-		locations = attractionListController.getItems();
-		dynasties = dynastyListController.getItems();
+		linker = new Linker();
+		events = linker.getEvents();
+		figures = linker.getFigures();
+		kings = linker.getKings();
+		festivals = linker.getFestivals();
+		locations = linker.getLocations();
+		dynasties = linker.getDynasties();
 	}
 
 	public List<Event> getEvents() {
