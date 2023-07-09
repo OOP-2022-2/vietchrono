@@ -1,5 +1,12 @@
 package hust.soict.oop.scraper.figure;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import hust.soict.oop.scraper.dynasty.Dynasty;
+import hust.soict.oop.scraper.event.Event;
+import hust.soict.oop.scraper.location.Location;
+
 public class King {
 
 	public King() {
@@ -30,9 +37,46 @@ public class King {
 	public String theThiep;
 
 	public String pictureLink;
+	
+	private List<Event> relatedEvents = new ArrayList<>();
+	private List<Location> relatedLocations = new ArrayList<>();
+	private List<Figure> relatedFigures = new ArrayList<>();
+	private List<Dynasty> relatedDynasty = new ArrayList<>();
 
 	public String getPictureLink() {
 		return pictureLink;
+	}
+
+	public List<Event> getRelatedEvents() {
+		return relatedEvents;
+	}
+
+	public void setRelatedEvents(List<Event> relatedEvents) {
+		this.relatedEvents = relatedEvents;
+	}
+
+	public List<Location> getRelatedLocations() {
+		return relatedLocations;
+	}
+
+	public void setRelatedLocations(List<Location> relatedLocations) {
+		this.relatedLocations = relatedLocations;
+	}
+
+	public List<Figure> getRelatedFigures() {
+		return relatedFigures;
+	}
+
+	public void setRelatedFigures(List<Figure> relatedFigures) {
+		this.relatedFigures = relatedFigures;
+	}
+
+	public List<Dynasty> getRelatedDynasty() {
+		return relatedDynasty;
+	}
+
+	public void setRelatedDynasty(List<Dynasty> relatedDynasty) {
+		this.relatedDynasty = relatedDynasty;
 	}
 
 	public void setPictureLink(String pictureLink) {
@@ -183,4 +227,6 @@ public class King {
 		this.theThiep = theThiep;
 	}
 
+	
+	
 }

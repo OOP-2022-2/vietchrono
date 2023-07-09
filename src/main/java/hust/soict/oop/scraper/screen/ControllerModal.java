@@ -227,11 +227,22 @@ public class ControllerModal {
 
 		Label descriptionLabel = king.getDescription() == null || king.getDescription().equals("") ? null
 				: new Label("Thông tin: " + king.getDescription());
-
+		
+		Label relatedFiguresLabel = new Label("Các nhân vật liên quan: ");
+		Label relatedLocationLabel = new Label("Các di tích liên quan: ");
+		Label relatedDynastiesLabel = new Label("Các xung đột liên quan: ");
+		Label relatedEventsLabel = new Label("Các sự kiện liên quan: ");
+		
 		kingLabel.setStyle("-fx-text-fill: white;");
 		countryLabel.setStyle("-fx-text-fill: white;");
 		timeLabel.setStyle("-fx-text-fill: white;");
 		reignLabel.setStyle("-fx-text-fill: white;");
+		relatedFiguresLabel.setStyle("-fx-text-fill: white;");
+		relatedLocationLabel.setStyle("-fx-text-fill: white;");
+		relatedDynastiesLabel.setStyle("-fx-text-fill: white;");
+		relatedEventsLabel.setStyle("-fx-text-fill: white;");
+		
+		
 
 		if (huyLabel != null)
 			huyLabel.setStyle("-fx-text-fill: white;");
@@ -272,6 +283,10 @@ public class ControllerModal {
 		timeLabel.setWrapText(true);
 		countryLabel.setWrapText(true);
 		reignLabel.setWrapText(true);
+		relatedFiguresLabel.setWrapText(true);
+		relatedLocationLabel.setWrapText(true);
+		relatedEventsLabel.setWrapText(true);
+		relatedDynastiesLabel.setWrapText(true);
 
 		if (huyLabel != null)
 			huyLabel.setWrapText(true);
@@ -311,7 +326,7 @@ public class ControllerModal {
 		// Create a VBox to hold all the non-null labels
 		VBox vbox = new VBox();
 		vbox.getChildren().addAll(kingLabel, timeLabel, countryLabel, reignLabel);
-
+		
 		if (huyLabel != null)
 			vbox.getChildren().add(huyLabel);
 		if (nienHieuLabel != null)
@@ -345,6 +360,56 @@ public class ControllerModal {
 			vbox.getChildren().add(pictureLabel);
 		if (descriptionLabel != null)
 			vbox.getChildren().add(descriptionLabel);
+		
+		
+		if (king.getRelatedFigures().size() != 0) {
+			vbox.getChildren().add(relatedFiguresLabel);
+
+			for (Figure figure : king.getRelatedFigures()) {
+				Label figureLabel = new Label("\t- " + figure.getName());
+				figureLabel.setStyle("-fx-text-fill: white;");
+				figureLabel.setWrapText(true);
+				vbox.getChildren().add(figureLabel);
+				VBox.setMargin(figureLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (king.getRelatedLocations().size() != 0) {
+			vbox.getChildren().add(relatedLocationLabel);
+
+			for (Location location : king.getRelatedLocations()) {
+				Label locationLabel = new Label("\t- " + location.getName());
+				locationLabel.setStyle("-fx-text-fill: white;");
+				locationLabel.setWrapText(true);
+				vbox.getChildren().add(locationLabel);
+				VBox.setMargin(locationLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (king.getRelatedEvents().size() != 0) {
+			vbox.getChildren().add(relatedEventsLabel);
+
+			for (Event event : king.getRelatedEvents()) {
+				Label eventLabel = new Label("\t- " + event.getEvent());
+				eventLabel.setStyle("-fx-text-fill: white;");
+				eventLabel.setWrapText(true);
+				vbox.getChildren().add(eventLabel);
+				VBox.setMargin(eventLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (king.getRelatedDynasty().size() != 0) {
+			vbox.getChildren().add(relatedDynastiesLabel);
+
+			for (Dynasty dynasty : king.getRelatedDynasty()) {
+				Label dynastyLabel = new Label("\t- " + dynasty.getXungDot());
+				dynastyLabel.setStyle("-fx-text-fill: white;");
+				dynastyLabel.setWrapText(true);
+				vbox.getChildren().add(dynastyLabel);
+				VBox.setMargin(dynastyLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
 
 		// Set the spacing between labels
 		vbox.setSpacing(10);
@@ -408,6 +473,11 @@ public class ControllerModal {
 		Label periodLabel = new Label("Thời kì: " + figure.getPeriod());
 		Label descriptionLabel = figure.getDescription() == null || figure.getDescription().equals("") ? null
 				: new Label("Thông tin: " + figure.getDescription());
+		
+		Label relatedEvent = new Label("Sự kiện liên quan: ");
+		Label relatedFigure = new Label("Nhân vật liên quan: ");
+		Label relatedDynasty = new Label("Xung đột liên quan: ");
+		Label relatedLocation = new Label("Di tích liên quan: ");
 
 		figureLabel.setStyle("-fx-text-fill: white;");
 		timeLabel.setStyle("-fx-text-fill: white;");
@@ -416,6 +486,11 @@ public class ControllerModal {
 		periodLabel.setStyle("-fx-text-fill: white;");
 		if (descriptionLabel != null)
 			descriptionLabel.setStyle("-fx-text-fill: white;");
+		
+		relatedEvent.setStyle("-fx-text-fill: white;");
+		relatedFigure.setStyle("-fx-text-fill: white;");
+		relatedDynasty.setStyle("-fx-text-fill: white;");
+		relatedLocation.setStyle("-fx-text-fill: white;");
 
 		// Set wrap text for all labels
 		figureLabel.setWrapText(true);
@@ -425,12 +500,64 @@ public class ControllerModal {
 		periodLabel.setWrapText(true);
 		if (descriptionLabel != null)
 			descriptionLabel.setWrapText(true);
+		relatedEvent.setWrapText(true);
+		relatedFigure.setWrapText(true);
+		relatedDynasty.setWrapText(true);
+		relatedLocation.setWrapText(true);
 
 		// Create a VBox to hold all the non-null labels
 		VBox vbox = new VBox();
 		vbox.getChildren().addAll(figureLabel, otherNameLabel, timeLabel, periodLabel, placeLabel);
 		if (descriptionLabel != null)
 			vbox.getChildren().add(descriptionLabel);
+		
+		if (figure.getRelatedFigures().size() != 0) {
+			vbox.getChildren().add(relatedFigure);
+
+			for (Figure f : figure.getRelatedFigures()) {
+				Label figureLabel1 = new Label("\t- " + figure.getName());
+				figureLabel1.setStyle("-fx-text-fill: white;");
+				figureLabel1.setWrapText(true);
+				vbox.getChildren().add(figureLabel1);
+				VBox.setMargin(figureLabel1, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (figure.getRelatedLocation().size() != 0) {
+			vbox.getChildren().add(relatedLocation);
+
+			for (Location location : figure.getRelatedLocation()) {
+				Label locationLabel = new Label("\t- " + location.getName());
+				locationLabel.setStyle("-fx-text-fill: white;");
+				locationLabel.setWrapText(true);
+				vbox.getChildren().add(locationLabel);
+				VBox.setMargin(locationLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (figure.getRelatedEvents().size() != 0) {
+			vbox.getChildren().add(relatedEvent);
+
+			for (Event event : figure.getRelatedEvents()) {
+				Label eventLabel = new Label("\t- " + event.getEvent());
+				eventLabel.setStyle("-fx-text-fill: white;");
+				eventLabel.setWrapText(true);
+				vbox.getChildren().add(eventLabel);
+				VBox.setMargin(eventLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (figure.getRelatedDynasty().size() != 0) {
+			vbox.getChildren().add(relatedDynasty);
+
+			for (Dynasty dynasty : figure.getRelatedDynasty()) {
+				Label dynastyLabel = new Label("\t- " + dynasty.getXungDot());
+				dynastyLabel.setStyle("-fx-text-fill: white;");
+				dynastyLabel.setWrapText(true);
+				vbox.getChildren().add(dynastyLabel);
+				VBox.setMargin(dynastyLabel, new Insets(0, 10, 0, 20));
+			}
+		}
 
 		// Set the spacing between labels
 		vbox.setSpacing(10);

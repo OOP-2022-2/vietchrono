@@ -48,10 +48,125 @@ public class Linker {
 		setEventToDynasty();
 		setKingToDynasty();
 		setFigureToDynasty();
+		
 		setFigureToEvent();
 		setKingToEvent();
+		
+		setFigureToKing();
+		setLocationToKing();
+		setEventToKing();
+		setDynastyToKing();
+		
+		setEventToFigure();
+		setLocationToFigure();
+		setDynastyToFigure();
+		setFigureToFigure();
 	}
-
+	
+	public void setFigureToKing() {
+		for (int i = 0; i < kings.size(); i++) {
+			List<Figure> list = new ArrayList<>();
+			for (Figure figure : figures) {
+				if (kings.get(i).getDescription() != null && figure.getName() != kings.get(i).getName()
+						&& kings.get(i).getDescription().toLowerCase().contains(figure.getName().toLowerCase())) {
+					list.add(figure);
+				}
+			}
+			kings.get(i).setRelatedFigures(list);
+		}
+	}
+	
+	public void setEventToKing() {
+		for (int i = 0; i < kings.size(); i++) {
+			List<Event> list = new ArrayList<>();
+			for (Event event : events) {
+				if (event.getDescription() != null 
+						&& event.getDescription().toLowerCase().contains(kings.get(i).getName().toLowerCase())) {
+					list.add(event);
+				}
+			}
+			kings.get(i).setRelatedEvents(list);
+		}
+	}
+	
+	public void setLocationToKing() {
+		for (int i = 0; i < kings.size(); i++) {
+			List<Location> list = new ArrayList<>();
+			for (Location location : locations) {
+				if (location.getName() != null 
+						&& location.getName().toLowerCase().contains(kings.get(i).getName().toLowerCase())) {
+					list.add(location);
+				}
+			}
+			kings.get(i).setRelatedLocations(list);
+		}
+	}
+	
+	public void setDynastyToKing() {
+		for (int i = 0; i < kings.size(); i++) {
+			List<Dynasty> list = new ArrayList<>();
+			for (Dynasty dynasty : dynasties) {
+				if (dynasty.getXungDot() != null 
+						&& dynasty.getXungDot().toLowerCase().contains(kings.get(i).getName().toLowerCase())) {
+					list.add(dynasty);
+				}
+			}
+			kings.get(i).setRelatedDynasty(list);
+		}
+	}
+	
+	public void setDynastyToFigure() {
+		for (int i = 0; i < figures.size(); i++) {
+			List<Dynasty> list = new ArrayList<>();
+			for (Dynasty dynasty : dynasties) {
+				if (dynasty.getXungDot() != null 
+						&& dynasty.getXungDot().toLowerCase().contains(figures.get(i).getName().toLowerCase())) {
+					list.add(dynasty);
+				}
+			}
+			figures.get(i).setRelatedDynasty(list);
+		}
+	}
+	
+	public void setLocationToFigure() {
+		for (int i = 0; i < figures.size(); i++) {
+			List<Location> list = new ArrayList<>();
+			for (Location location : locations) {
+				if (location.getName() != null 
+						&& location.getName().toLowerCase().contains(figures.get(i).getName().toLowerCase())) {
+					list.add(location);
+				}
+			}
+			figures.get(i).setRelatedLocation(list);
+		}
+	}
+	
+	public void setEventToFigure() {
+		for (int i = 0; i < figures.size(); i++) {
+			List<Event> list = new ArrayList<>();
+			for (Event event : events) {
+				if (event.getDescription() != null 
+						&& event.getDescription().toLowerCase().contains(figures.get(i).getName().toLowerCase())) {
+					list.add(event);
+				}
+			}
+			figures.get(i).setRelatedEvents(list);
+		}
+	}
+	
+	public void setFigureToFigure() {
+		for (int i = 0; i < figures.size(); i++) {
+			List<Figure> list = new ArrayList<>();
+			for (Figure figure : figures) {
+				if (figure.getDescription() != null && figure.getName() != figures.get(i).getName() 
+						&& figure.getDescription().toLowerCase().contains(figures.get(i).getName().toLowerCase())) {
+					list.add(figure);
+				}
+			}
+			figures.get(i).setRelatedFigures(list);
+		}
+	}
+	
 	public void setEventToDynasty() {
 		for (int i = 0; i < dynasties.size(); i++) {
 			List<Event> list = new ArrayList<>();
