@@ -69,7 +69,7 @@ public class KingDataCollector extends FigureDataCollector {
 		String thanMau;
 		String theThiep;
 
-		Writer file = new FileWriter("scraper/src/main/java/hust/soict/oop/scraper/figure/data/king.json");
+		Writer file = new FileWriter("src/main/java/hust/soict/oop/scraper/figure/data/king.json");
 		file.write("[\n");
 
 		for (int i = 0; i < allUrls.size(); i++) {
@@ -83,9 +83,11 @@ public class KingDataCollector extends FigureDataCollector {
 			}
 			// System.out.println(k.description);
 
-			Elements eName = info.select("th");
+			Elements eName = doc.getElementsByClass("firstHeading mw-first-heading");
 			if (eName.size() > 0) {
+				
 				name = eName.get(0).text();
+				System.out.println(name);
 				k.setName(name);
 //					System.out.println(name);
 			}
@@ -324,10 +326,10 @@ public class KingDataCollector extends FigureDataCollector {
 
 	}
 
-//	public static void main(String[] args) throws IOException {
-//		KingDataCollector k = new KingDataCollector();
-//		k.getData(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam"));;
-//	// 	System.out.println(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam").size());
-//	}
-	// 152 nv
+	public static void main(String[] args) throws IOException {
+		KingDataCollector k = new KingDataCollector();
+		k.getData(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam"));;
+	// 	System.out.println(k.getAllUrls("https://vi.wikipedia.org/wiki/Vua_Vi%E1%BB%87t_Nam").size());
+	}
+	
 }

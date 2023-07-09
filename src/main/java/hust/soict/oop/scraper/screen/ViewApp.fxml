@@ -31,24 +31,6 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Overview" textFill="#e7e5e5">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons8_Home_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
             <Button fx:id="btnDynasties" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Dynasties">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -85,7 +67,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnEvents" alignment="BASELINE_LEFT" graphicTextGap="22.0" onAction="#handleClicks" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Events">
+            <Button fx:id="btnEvents" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Events">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,7 +79,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnFestivals" alignment="BASELINE_LEFT" graphicTextGap="22.0" onAction="#handleClicks" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Festivals">
+            <Button fx:id="btnFestivals" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Festivals">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -109,7 +91,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnAttractions" alignment="BASELINE_LEFT" graphicTextGap="22.0" onAction="#handleClicks" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Tourist Attractions">
+            <Button fx:id="btnAttractions" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Tourist Attractions">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -137,7 +119,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="780" textFill="#de0000">
+                              <Label text="206" textFill="#de0000">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -147,7 +129,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="1000" textFill="#fa5f7e">
+                              <Label text="150" textFill="#fa5f7e">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -157,7 +139,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="780" textFill="#faa356">
+                              <Label text="3345" textFill="#faa356">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -167,7 +149,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="1500" textFill="#26bfbc">
+                              <Label text="216" textFill="#26bfbc">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -177,7 +159,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="22000" textFill="#2a73ff">
+                              <Label text="80" textFill="#2a73ff">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -187,7 +169,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="780" textFill="#cea5fb">
+                              <Label text="1615" textFill="#cea5fb">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -198,7 +180,7 @@
                      </children>
                   </HBox>
                   
-                  <fx:include source="ViewOverviewHeader.fxml" fx:id="header"/>
+                  <fx:include fx:id="header" source="ViewOverviewHeader.fxml" />
                   
                   <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
                      <content>
