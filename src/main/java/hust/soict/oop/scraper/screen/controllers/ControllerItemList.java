@@ -1,4 +1,4 @@
-package hust.soict.oop.scraper.screen;
+package hust.soict.oop.scraper.screen.controllers;
 
 import java.io.IOException;
 import java.nio.file.Paths;

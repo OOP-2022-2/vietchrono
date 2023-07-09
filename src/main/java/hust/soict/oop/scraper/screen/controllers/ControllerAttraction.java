@@ -1,8 +1,8 @@
-package hust.soict.oop.scraper.screen;
+package hust.soict.oop.scraper.screen.controllers;
 
 import java.io.IOException;
 
-import hust.soict.oop.scraper.festival.Festival;
+import hust.soict.oop.scraper.location.Location;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,35 +13,45 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static hust.soict.oop.scraper.paths.Paths.*;
 
-public class ControllerFestival {
-	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
+public class ControllerAttraction {
 
-	private Festival festival;
+	private Location attraction;
 
 	@FXML
 	private HBox itemC;
 
 	@FXML
-	private Label nameLabel;
+	private Label attractionLabel;
 
 	@FXML
-	private Label dateLabel;
+	private Label timeLabel;
 
 	@FXML
 	private Label locationLabel;
 
 	@FXML
+	private Label typeLabel;
+
+	@FXML
 	private Button detailButton;
 
-	public ControllerFestival(Festival festival) {
-		this.festival = festival;
+	public ControllerAttraction(Location attraction) {
+		this.attraction = attraction;
 	}
 
-	public void setFestivalDetails() {
-		nameLabel.setText(festival.getName());
-		dateLabel.setText(festival.getDate());
-		locationLabel.setText(festival.getLocation());
+	public void setAttractionDetails() {
+		// Set the event details in the UI elements
+		attractionLabel.setText(attraction.getName());
+		timeLabel.setText(attraction.getDate());
+		locationLabel.setText(attraction.getLocation());
+		typeLabel.setText(attraction.getType());
+
+		// Set button action or any additional event handling
+//        detailButton.setOnAction(event -> {
+//            // Handle the button click event for the event details
+//        });
 	}
 
 	@FXML
@@ -59,7 +69,7 @@ public class ControllerFestival {
 
 			// Set the event details in the Event.fxml controller
 			ControllerModal modalController = loader.getController();
-			modalController.setModalDetails(this.festival);
+			modalController.setModalDetails(this.attraction);
 
 			// Show the modal and wait for it to be closed
 			modalStage.showAndWait();

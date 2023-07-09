@@ -1,8 +1,8 @@
-package hust.soict.oop.scraper.screen;
+package hust.soict.oop.scraper.screen.controllers;
 
 import java.io.IOException;
 
-import hust.soict.oop.scraper.dynasty.Dynasty;
+import hust.soict.oop.scraper.event.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,40 +13,40 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static hust.soict.oop.scraper.paths.Paths.*;
 
-public class ControllerDynasty {
-	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
+public class ControllerEvent {
 
-	private Dynasty dynasty;
+	private Event event;
 
 	@FXML
 	private HBox itemC;
 
 	@FXML
+	private Label eventLabel;
+
+	@FXML
+	private Label dateLabel;
+
+	@FXML
+	private Label ageLabel;
+
+	@FXML
 	private Label dynastyLabel;
-
-	@FXML
-	private Label periodLabel;
-
-	@FXML
-	private Label enemyLabel;
-
-	@FXML
-	private Label resultLabel;
 
 	@FXML
 	private Button detailButton;
 
-	public ControllerDynasty(Dynasty dynasty) {
-		this.dynasty = dynasty;
+	public ControllerEvent(Event event) {
+		this.event = event;
 	}
 
-	public void setDynastyDetails() {
+	public void setEventDetails() {
 		// Set the event details in the UI elements
-		dynastyLabel.setText(dynasty.getXungDot());
-		periodLabel.setText(dynasty.getThoiKy());
-		enemyLabel.setText(dynasty.getDoiPhuong());
-		resultLabel.setText(dynasty.getKetQua());
+		eventLabel.setText(event.getEvent());
+		dateLabel.setText(event.printDate());
+		ageLabel.setText(event.getAge());
+		dynastyLabel.setText(event.getDynasty());
 
 		// Set button action or any additional event handling
 //        detailButton.setOnAction(event -> {
@@ -69,7 +69,7 @@ public class ControllerDynasty {
 
 			// Set the event details in the Event.fxml controller
 			ControllerModal modalController = loader.getController();
-			modalController.setModalDetails(this.dynasty);
+			modalController.setModalDetails(this.event);
 
 			// Show the modal and wait for it to be closed
 			modalStage.showAndWait();

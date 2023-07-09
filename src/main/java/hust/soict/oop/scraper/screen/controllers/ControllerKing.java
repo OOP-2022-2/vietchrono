@@ -1,4 +1,4 @@
-package hust.soict.oop.scraper.screen;
+package hust.soict.oop.scraper.screen.controllers;
 
 import java.io.IOException;
 
@@ -13,9 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static hust.soict.oop.scraper.paths.Paths.*;
 
 public class ControllerKing {
-	private static final String VIEW_MODAL_PATH = "ViewModal.fxml";
 
 	private King king;
 

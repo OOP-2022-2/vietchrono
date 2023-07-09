@@ -1,6 +1,8 @@
 package hust.soict.oop.scraper.screen;
 
 import static hust.soict.oop.scraper.paths.Paths.*;
+
+import hust.soict.oop.scraper.screen.controllers.ControllerApp;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

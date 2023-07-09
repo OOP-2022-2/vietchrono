@@ -13,7 +13,7 @@ import hust.soict.oop.scraper.event.Event;
 import hust.soict.oop.scraper.festival.Festival;
 import hust.soict.oop.scraper.figure.King;
 import hust.soict.oop.scraper.location.Location;
-import hust.soict.oop.scraper.screen.ControllerItemList;
+import hust.soict.oop.scraper.screen.controllers.ControllerItemList;
 import hust.soict.oop.scraper.store.Store;
 import hust.soict.oop.scraper.figure.Figure;
 

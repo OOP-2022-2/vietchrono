@@ -1,4 +1,4 @@
-package hust.soict.oop.scraper.screen;
+package hust.soict.oop.scraper.screen.controllers;
 
 import hust.soict.oop.scraper.dynasty.Dynasty;
 import hust.soict.oop.scraper.event.Event;
