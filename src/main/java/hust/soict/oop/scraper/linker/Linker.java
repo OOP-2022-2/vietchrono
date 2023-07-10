@@ -13,21 +13,20 @@ import hust.soict.oop.scraper.event.Event;
 import hust.soict.oop.scraper.festival.Festival;
 import hust.soict.oop.scraper.figure.King;
 import hust.soict.oop.scraper.location.Location;
-import hust.soict.oop.scraper.screen.controllers.ControllerItemList;
 import hust.soict.oop.scraper.store.Store;
 import hust.soict.oop.scraper.figure.Figure;
 
 public class Linker {
 
-	private ControllerItemList<Event> eventListController = new ControllerItemList<>(EVENTS_JSON_PATH, Event[].class);
-	private ControllerItemList<King> kingListController = new ControllerItemList<>(KINGS_JSON_PATH, King[].class);
-	private ControllerItemList<Figure> figureListController = new ControllerItemList<>(FIGURES_JSON_PATH,
+	private ItemLoader<Event> eventList = new ItemLoader<>(EVENTS_JSON_PATH, Event[].class);
+	private ItemLoader<King> kingList = new ItemLoader<>(KINGS_JSON_PATH, King[].class);
+	private ItemLoader<Figure> figureList = new ItemLoader<>(FIGURES_JSON_PATH,
 			Figure[].class);
-	private ControllerItemList<Dynasty> dynastyListController = new ControllerItemList<>(DYNASTIES_JSON_PATH,
+	private ItemLoader<Dynasty> dynastyList = new ItemLoader<>(DYNASTIES_JSON_PATH,
 			Dynasty[].class);
-	private ControllerItemList<Location> attractionListController = new ControllerItemList<>(ATTRACTIONS_JSON_PATH,
+	private ItemLoader<Location> attractionList = new ItemLoader<>(ATTRACTIONS_JSON_PATH,
 			Location[].class);
-	private ControllerItemList<Festival> festivalListController = new ControllerItemList<>(FESTIVALS_JSON_PATH,
+	private ItemLoader<Festival> festivalList = new ItemLoader<>(FESTIVALS_JSON_PATH,
 			Festival[].class);
 
 	private List<Event> events = new ArrayList<>();
@@ -38,12 +37,12 @@ public class Linker {
 	private List<Dynasty> dynasties = new ArrayList<>();
 
 	public Linker() {
-		events = eventListController.getItems();
-		figures = figureListController.getItems();
-		kings = kingListController.getItems();
-		festivals = festivalListController.getItems();
-		locations = attractionListController.getItems();
-		dynasties = dynastyListController.getItems();
+		events = eventList.getItems();
+		figures = figureList.getItems();
+		kings = kingList.getItems();
+		festivals = festivalList.getItems();
+		locations = attractionList.getItems();
+		dynasties = dynastyList.getItems();
 
 		setEventToDynasty();
 		setKingToDynasty();

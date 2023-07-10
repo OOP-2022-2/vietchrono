@@ -1,4 +1,4 @@
-package hust.soict.oop.scraper.screen.controllers;
+package hust.soict.oop.scraper.linker;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -10,11 +10,11 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ControllerItemList<T> {
+public class ItemLoader<T> {
 
 	private List<T> items = new ArrayList<>();
 
-	public ControllerItemList(String dataFilePath, Class<T[]> type) {
+	public ItemLoader(String dataFilePath, Class<T[]> type) {
 		loadItems(dataFilePath, type);
 	}
 
