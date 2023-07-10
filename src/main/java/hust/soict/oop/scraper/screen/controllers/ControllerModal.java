@@ -587,20 +587,49 @@ public class ControllerModal {
 		Label dateLabel = new Label("Thời gian công nhận: " + attraction.getDate());
 		Label locationLabel = new Label("Địa điểm: " + attraction.getLocation());
 		Label typeLabel = new Label("Loại di tích: " + attraction.getType());
+		Label relatedKings = new Label("Vị vua liên quan:");
+		Label relatedFigures = new Label("Nhân vật liên quan:");
 
 		attractionLabel.setStyle("-fx-text-fill: white;");
 		dateLabel.setStyle("-fx-text-fill: white;");
 		locationLabel.setStyle("-fx-text-fill: white;");
 		typeLabel.setStyle("-fx-text-fill: white;");
+		relatedKings.setStyle("-fx-text-fill: white;");
+		relatedFigures.setStyle("-fx-text-fill: white;");
 
 		attractionLabel.setWrapText(true);
 		dateLabel.setWrapText(true);
 		locationLabel.setWrapText(true);
 		typeLabel.setWrapText(true);
+		relatedKings.setWrapText(true);
+		relatedFigures.setWrapText(true);
 
 		VBox vbox = new VBox();
 		vbox.getChildren().addAll(attractionLabel, dateLabel, locationLabel, typeLabel);
+		
+		if (attraction.getRelatedFigures().size() != 0) {
+			vbox.getChildren().add(relatedFigures);
 
+			for (Figure f : attraction.getRelatedFigures()) {
+				Label figureLabel1 = new Label("\t- " + f.getName());
+				figureLabel1.setStyle("-fx-text-fill: white;");
+				figureLabel1.setWrapText(true);
+				vbox.getChildren().add(figureLabel1);
+				VBox.setMargin(figureLabel1, new Insets(0, 10, 0, 20));
+			}
+		}
+		
+		if (attraction.getRelatedKings().size() != 0) {
+			vbox.getChildren().add(relatedKings);
+			for (King king : attraction.getRelatedKings()) {
+				Label kingLabel = new Label("\t- " + king.getName());
+				kingLabel.setStyle("-fx-text-fill: white;");
+				kingLabel.setWrapText(true);
+				vbox.getChildren().add(kingLabel);
+				VBox.setMargin(kingLabel, new Insets(0, 10, 0, 20));
+			}
+		}
+		
 		vbox.setSpacing(10);
 
 		// Apply margins to the labels

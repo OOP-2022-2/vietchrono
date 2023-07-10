@@ -51,6 +51,9 @@ public class Linker {
 		setFigureToEvent();
 		setKingToEvent();
 		
+		setFigureToAttraction();
+		setKingToAttraction();
+		
 		setFigureToKing();
 		setLocationToKing();
 		setEventToKing();
@@ -59,6 +62,30 @@ public class Linker {
 		setEventToFigure();
 		setLocationToFigure();
 		setDynastyToFigure();
+	}
+	
+	public void setFigureToAttraction() {
+		for (int i = 0; i < locations.size(); i++) {
+			List<Figure> list = new ArrayList<>();
+			for (Figure figure : figures) {
+				if (locations.get(i).getName() != null && locations.get(i).getName().toLowerCase().trim().contains(figure.getName().toLowerCase())) {
+					list.add(figure);
+				}
+			}
+			locations.get(i).setRelatedFigures(list);
+		}
+	}
+	
+	public void setKingToAttraction() {
+		for (int i = 0; i < locations.size(); i++) {
+			List<King> list = new ArrayList<>();
+			for (King king : kings) {
+				if (locations.get(i).getName() != null && locations.get(i).getName().toLowerCase().trim().contains(king.getName().toLowerCase())) {
+					list.add(king);
+				}
+			}
+			locations.get(i).setRelatedKings(list);
+		}
 	}
 	
 	public void setFigureToKing() {

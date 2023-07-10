@@ -2,11 +2,15 @@ package hust.soict.oop.scraper.location;
 
 import java.util.*;
 
+import hust.soict.oop.scraper.figure.*;
+
 public class Location {
 	private String name;
 	private String date;
 	private String location;
 	private String type;
+	private List<Figure> relatedFigures = new ArrayList<>();
+	private List<King> relatedKings = new ArrayList<>();
 
 	public Location() {
 
@@ -43,6 +47,22 @@ public class Location {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public List<Figure> getRelatedFigures() {
+		return relatedFigures;
+	}
+
+	public void setRelatedFigures(List<Figure> relatedFigures) {
+		this.relatedFigures = relatedFigures;
+	}
+
+	public List<King> getRelatedKings() {
+		return relatedKings;
+	}
+
+	public void setRelatedKings(List<King> relatedKings) {
+		this.relatedKings = relatedKings;
 	}
 
 }
