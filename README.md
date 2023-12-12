@@ -2,7 +2,12 @@
 
 ## Overview
 
-VietChrono is a Java-based application dedicated to tracking historical events in Vietnam. The project focuses on providing a comprehensive platform for users to explore and learn about Vietnam's rich historical events. This README provides an overview of the project, its features, the technologies used, along with instructions to run the application locally.
+VietChrono is a Java-based application dedicated to tracking historical events in Vietnam. 
+
+The project focuses on providing a comprehensive platform for users to explore and learn about Vietnam's rich historical events. 
+
+This README provides an overview of the project, its features, the technologies used, along with instructions to run the application locally.
+
 ## Table of Contents
 
 - [Features](#features)
