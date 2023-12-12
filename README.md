@@ -1,4 +1,4 @@
-# VietChrono
+# VietChrono - Historical Events Tracker
 
 ## Overview
 
@@ -41,8 +41,8 @@ To get started with VietChrono, follow these steps:
    ```
 
 2. **Run the Application:**
-  - Open the project in your preferred Java development environment.
-  - Build and run the application.
+   - Open the project in your preferred Java development environment.
+   - Build and run the application.
 
 3. **Explore Vietnam's Historical Events:**
-  - Use the search functionality or browse through the user interface to discover and learn about historical events in Vietnam.
+   - Use the search functionality or browse through the user interface to discover and learn about historical events in Vietnam.
