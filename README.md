@@ -28,6 +28,7 @@ VietChrono is a Java-based application dedicated to tracking historical events i
 - Java
 - JavaFx
 - Jsoup
+- Maven
 
 ## Quick Start
 
@@ -44,4 +45,4 @@ To get started with VietChrono, follow these steps:
   - Build and run the application.
 
 3. **Explore Vietnam's Historical Events:**
-   - Use the search functionality or browse through the user interface to discover and learn about historical events in Vietnam.
+  - Use the search functionality or browse through the user interface to discover and learn about historical events in Vietnam.
